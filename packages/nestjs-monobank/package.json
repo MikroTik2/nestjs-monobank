@@ -12,9 +12,11 @@
             "email": "dotsenk20034@gmail.com"
         }
     ],
-    "private": true,
+    "private": false,
     "license": "MIT",
     "repository": "git@github.com:MikroTik2/nestjs-monobank.git",
+    "main": "./dist/index.js",
+	"types": "./dist/index.d.ts",
     "scripts": {
         "build": "tsc -p tsconfig.json",
         "precommit": "lint-staged",
