@@ -10,7 +10,7 @@ export declare class MonobankModule {
      * @example
      * ```ts
      * MonobankModule.forRoot({
-     *   apiKey: 'your_monobank_key',
+     *   apiKey: configService.getOrThrow('MONOBANK_API_KEY')
      * });
      * ```
      */
@@ -26,7 +26,7 @@ export declare class MonobankModule {
      * MonobankModule.forRootAsync({
      *   imports: [ConfigModule],
      *   useFactory: async (configService: ConfigService) => ({
-     *     token: configService.getOrThrow('MONOBANK_TOKEN')
+     *     apiKey: configService.getOrThrow('MONOBANK_API_KEY')
      *   }),
      *   inject: [ConfigService]
      * });
