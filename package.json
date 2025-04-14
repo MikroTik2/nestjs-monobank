@@ -1,21 +1,26 @@
 {
-  "name": "with-vue-nuxt",
-  "private": true,
-  "scripts": {
-    "build": "turbo run build",
-    "dev": "turbo run dev",
-    "lint": "turbo run lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "precommit": "lint-staged",
-    "prepare": "husky"
-  },
-  "devDependencies": {
-    "prettier": "^3.2.5",
-    "turbo": "^2.5.0"
-  },
-  "packageManager": "npm@10.8.2",
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ]
+      "name": "nestjs-monobank",
+      "version": "0.0.1",
+      "private": true,
+      "license": "MIT",
+      "workspaces": [
+            "apps/*",
+            "packages/*"
+      ],
+      "scripts": {
+            "dev": "turbo run dev",
+            "dev:www": "turbo run dev --filter=www",
+            "build": "turbo run build",
+            "build:www": "turbo run build --filter=www",
+            "build:packages": "turbo run build --filter=packages/*",
+            "install": "npm install --legacy-peer-deps",
+            "update": "npm update",
+            "upgrade:all": "npm i -g npm-check-updates && ncu -u && npm install",
+            "lint": "turbo run lint",
+            "format": "prettier --write \"**/*.{ts,tsx,md}\""
+      },
+      "devDependencies": {
+            "turbo": "^2.5.0"
+      },
+      "packageManager": "npm@10.8.2"
 }

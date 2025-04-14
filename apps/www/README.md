@@ -1,27 +1,75 @@
-## Getting Started
+# Nuxt Minimal Starter
 
-First, run the development server:
+Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+
+## Setup
+
+Make sure to install dependencies:
 
 ```bash
-pnpm dev
+# npm
+npm install
+
+# pnpm
+pnpm install
+
+# yarn
+yarn install
+
+# bun
+bun install
 ```
 
-Open [http://localhost:3001](http://localhost:3001) with your browser to see the result.
+## Development Server
 
-You can start editing the page by modifying `app.vue`. The page auto-updates as you edit the file.
+Start the development server on `http://localhost:3000`:
 
-To create [API routes](https://nuxt.com/docs/guide/directory-structure/server), add an `api/` or a `routes` directory to the `server/` directory and create `your-file.ts` which will contain your api logic. Like `server/api/hello.ts` would map to [http://localhost:3001/api/hello](http://localhost:3001/api/hello).
+```bash
+# npm
+npm run dev
 
-> See the guide for more details -> [directory-structure/server](https://nuxt.com/docs/guide/directory-structure/server)
+# pnpm
+pnpm dev
 
-## Learn More
+# yarn
+yarn dev
 
-To learn more about Next.js, take a look at the following resources:
+# bun
+bun run dev
+```
 
-- [NuxtJs Official documentation](https://nuxt.com/docs/getting-started/introduction) - learn about Nuxt to create production-grade full-stack web apps and websites features and API.
+## Production
 
-## Deploy on Vercel
+Build the application for production:
 
-You can easily deploy your Nuxt app by using the [Vercel Platform](https://vercel.com/new?utm_source=github.com&utm_medium=referral&utm_campaign=turborepo-readme).
+```bash
+# npm
+npm run build
 
-Check out our [Nuxt deployment documentation](https://vercel.com/docs/frameworks/nuxt) for more details.
+# pnpm
+pnpm build
+
+# yarn
+yarn build
+
+# bun
+bun run build
+```
+
+Locally preview production build:
+
+```bash
+# npm
+npm run preview
+
+# pnpm
+pnpm preview
+
+# yarn
+yarn preview
+
+# bun
+bun run preview
+```
+
+Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
