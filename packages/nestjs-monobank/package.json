@@ -1,6 +1,6 @@
 {
     "name": "nestjs-monobank",
-    "version": "0.0.1",
+    "version": "0.0.3",
     "description": "A NestJS library for integrating with Monobank API",
     "author": {
         "name": "MikroTik_2",
@@ -16,7 +16,7 @@
     "license": "MIT",
     "repository": "git@github.com:MikroTik2/nestjs-monobank.git",
     "main": "./dist/index.js",
-	"types": "./dist/index.d.ts",
+    "types": "./dist/index.d.ts",
     "scripts": {
         "build": "tsc -p tsconfig.json",
         "precommit": "lint-staged",
@@ -28,8 +28,7 @@
     "dependencies": {
         "@nestjs/axios": "^4.0.0",
         "axios": "^1.8.4",
-        "rxjs": "^7.8.1",
-        "uuid": "^11.1.0"
+        "rxjs": "^7.8.1"
     },
     "husky": {
         "hooks": {
@@ -45,8 +44,6 @@
         "@nestjs/core": "^11.0.17",
         "@nestjs/schematics": "^11.0.0",
         "@nestjs/testing": "^11.0.1",
-        "@swc/cli": "^0.6.0",
-        "@swc/core": "^1.10.7",
         "@types/express": "^5.0.0",
         "@types/jest": "^29.5.14",
         "@types/node": "^22.10.7",
