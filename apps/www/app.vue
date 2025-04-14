@@ -1,3 +1,3 @@
 <template>
-    hello world
+    sosni vyalogo))0)
 </template>
