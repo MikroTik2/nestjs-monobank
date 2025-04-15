@@ -1,42 +1,28 @@
+<script setup lang="ts">
+import type { PrimitiveProps } from 'reka-ui';
+import type { HTMLAttributes } from 'vue';
+import type { ButtonVariants } from '.';
+import { cn } from '@/lib/utils';
+import { Primitive } from 'reka-ui';
+import { buttonVariants } from '.';
+
+interface Props extends PrimitiveProps {
+    variant?: ButtonVariants['variant'];
+    size?: ButtonVariants['size'];
+    class?: HTMLAttributes['class'];
+}
+
+const props = withDefaults(defineProps<Props>(), {
+    as: 'button',
+});
+</script>
+
 <template>
-    <button
-      :class="computedClass"
-      :disabled="disabled"
-      v-bind="$attrs"
+    <Primitive
+        :as="as"
+        :as-child="asChild"
+        :class="cn(buttonVariants({ variant, size }), props.class)"
     >
-      <slot />
-    </button>
-  </template>
-  
-  <script setup lang="ts">
-  import { computed } from 'vue';
-  import { button } from '../utils/button';
-  
-  const props = defineProps({
-    variant: {
-      type: String as () => 'primary' | 'secondary' | 'outline' | 'link' | 'ghost' | 'icon',
-      default: 'primary',
-    },
-    size: {
-      type: String as () => 'sm' | 'md' | 'lg' | 'icon',
-      default: 'md',
-    },
-    rounded: {
-      type: String as () => 'none' | 'sm' | 'md' | 'lg' | 'full',
-      default: 'md',
-    },
-    disabled: {
-      type: Boolean,
-      default: false,
-    },
-  });
-  
-  const computedClass = computed(() =>
-    button({
-      variant: props.variant,
-      size: props.size,
-      rounded: props.rounded,
-    })
-  );
-  </script>
-  
+        <slot />
+    </Primitive>
+</template>

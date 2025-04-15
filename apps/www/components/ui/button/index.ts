@@ -1,7 +1,7 @@
-import { cva } from 'class-variance-authority';
+import { cva, type VariantProps } from 'class-variance-authority';
 
-export const button = cva(
-  'inline-flex items-center justify-center font-medium transition-colors focus:outline-none disabled:opacity-50 disabled:pointer-events-none',
+export const buttonVariants = cva(
+  'inline-flex rounded-md items-center justify-center font-medium transition-colors focus:outline-none disabled:opacity-50 disabled:pointer-events-none',
   {
     variants: {
       variant: {
@@ -18,18 +18,12 @@ export const button = cva(
         lg: 'px-5 py-3 text-lg',
         icon: 'p-2',
       },
-      rounded: {
-        none: 'rounded-none',
-        sm: 'rounded-sm',
-        md: 'rounded-md',
-        lg: 'rounded-lg',
-        full: 'rounded-full',
-      },
     },
     defaultVariants: {
       variant: 'primary',
       size: 'md',
-      rounded: 'md',
     },
   }
 );
+
+export type ButtonVariants = VariantProps<typeof buttonVariants>;
