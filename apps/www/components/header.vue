@@ -5,7 +5,7 @@
                 NestJS Monobank
                 <div class="flex gap-4">
                     <ThemeButton />
-                    <Button class="gap-2" size="sm">
+                    <Button class="gap-2">
                         <LucideGithub size="15"/> 
                         Github
                     </Button>
