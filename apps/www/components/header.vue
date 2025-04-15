@@ -1,21 +1,24 @@
+<script setup lang="ts">
+import ThemeButton from "./ui/theme-button/ThemeButton.vue";
+import { cn } from "@/lib/utils";
+import { buttonVariants } from "./ui/button";
+</script>
+
 <template>
-    <header class="fixed inset-x-0 top-0 z-30 border-b-[gray] border-b p-2 border-border backdrop-blur-lg">
-        <Container>
-            <div class="flex justify-between items-center">
-                NestJS Monobank
-                <div class="flex gap-4">
-                    <ThemeButton />
-                    <Button class="gap-2">
-                        <LucideGithub size="15"/> 
-                        Github
-                    </Button>
+    <header class="bg-whitesm:bg-white/90 fixed inset-x-0 top-0 z-30 border-b border-border drop-shadow-lg sm:backdrop-blur-lg">
+        <div class="max-w-8xl relative mx-auto px-4 lg:px-8">
+            <div class="hidden h-16 w-full items-center justify-between md:flex">
+                <div class="flex items-center justify-start gap-3">
+                    <NuxtLink to="/" class="flex items-center gap-x-3 text-xl font-bold"> NestJS Monobank </NuxtLink>
                 </div>
+                <nav class="flex items-center gap-2 text-sm xl:gap-4">
+                    <ThemeButton />
+                    <a href="https://github.com/vladislav2251/nestjs-monobank" target="_blank" rel="noopener noreferrer" :class="cn(buttonVariants({}))">
+                        <LucideGithub />
+                        Github
+                    </a>
+                </nav>
             </div>
-        </Container>
+        </div>
     </header>
 </template>
-<script setup lang="ts">
-    import ThemeButton from './ui/theme-button/ThemeButton.vue'
-    import Button from './ui/button/Button.vue'
-    import Container from './ui/container/Container.vue'
-</script>

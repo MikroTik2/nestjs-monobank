@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import type { HTMLAttributes } from 'vue';
-import type { ContainerVariants } from '.';
-import { cn } from '@/lib/utils';
-import { containerVariants } from '.';
+import type { HTMLAttributes } from "vue";
+import type { ContainerVariants } from ".";
+import { cn } from "@/lib/utils";
+import { containerVariants } from ".";
 
 interface Props {
-    size?: ContainerVariants['size'];
-    class?: HTMLAttributes['class'];
+    size?: ContainerVariants["size"];
+    class?: HTMLAttributes["class"];
 }
 
 const props = withDefaults(defineProps<Props>(), {});

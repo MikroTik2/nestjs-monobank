@@ -1,1 +1,1 @@
-export { default as ThemeButton } from './ThemeButton.vue'
+export { default as ThemeButton } from "./ThemeButton.vue";

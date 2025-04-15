@@ -8,10 +8,11 @@ export default withNuxt({
         prettier,
     },
     rules: {
-        // включить prettier как ESLint правило
         ...pluginPrettierRecommended.rules,
+        "vue/require-default-prop": "off",
+        "vue/no-multiple-template-root": "off",
+        "vue/multi-word-component-names": "off",
 
-        // твои кастомные правила Prettier
         "prettier/prettier": [
             "error",
             {
