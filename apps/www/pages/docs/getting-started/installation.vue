@@ -1,3 +1,1 @@
-<template>
-    installation
-</template>
+<template>installation</template>

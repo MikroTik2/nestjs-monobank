@@ -47,6 +47,36 @@ let MonobankService = class MonobankService {
             throw new common_1.HttpException(error.response.data.errText || "Помилка під час виконання запиту", common_1.HttpStatus.BAD_REQUEST);
         }
     }
+    /**
+     * Отримує статус рахунку за його ID.
+     * Цей метод надсилає запит на отримання інформації про статус існуючого рахунку.
+     * Повертає деталі рахунку, включаючи його поточний статус.
+     *
+     * @param {string} invoiceId - Унікальний ідентифікатор рахунку.
+     * @returns {Promise<InvoiceStatus>} Відповідь від API з поточним статусом рахунку.
+     */
+    async getInvoiceStatus(invoiceId) {
+        try {
+            const response = await (0, rxjs_1.firstValueFrom)(this.httpService.get(`${this.apiUrl}/merchant/invoice/status?invoiceId=${invoiceId}`, {
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-Token": this.apiKey,
+                },
+            }));
+            return response.data;
+        }
+        catch (error) {
+            throw new common_1.HttpException(error.response.data.errText || "Помилка під час виконання запиту", common_1.HttpStatus.BAD_REQUEST);
+        }
+    }
+    async getMerchantInfo() { }
+    async getReceipt() { }
+    async getIframeUrl() { }
+    async cancelPayment() { }
+    async invalidateInvoice() { }
+    async finalizeHold() { }
+    async payByRequisites() { }
+    async paySync() { }
 };
 exports.MonobankService = MonobankService;
 exports.MonobankService = MonobankService = __decorate([

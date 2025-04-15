@@ -1,5 +1,5 @@
 import { HttpService } from "@nestjs/axios";
-import { type InvoiceCreateRequest, type InvoiceDetails, type MonobankOptions } from "./interfaces";
+import { InvoiceStatus, type InvoiceCreateRequest, type InvoiceDetails, type MonobankOptions } from "./interfaces";
 export declare class MonobankService {
     private readonly options;
     private readonly httpService;
@@ -15,4 +15,21 @@ export declare class MonobankService {
      * @returns {Promise<InvoiceDetails>} Відповідь від API з деталями рахунку.
      */
     createInvoice(invoiceData: InvoiceCreateRequest): Promise<InvoiceDetails>;
+    /**
+     * Отримує статус рахунку за його ID.
+     * Цей метод надсилає запит на отримання інформації про статус існуючого рахунку.
+     * Повертає деталі рахунку, включаючи його поточний статус.
+     *
+     * @param {string} invoiceId - Унікальний ідентифікатор рахунку.
+     * @returns {Promise<InvoiceStatus>} Відповідь від API з поточним статусом рахунку.
+     */
+    getInvoiceStatus(invoiceId: string): Promise<InvoiceStatus>;
+    getMerchantInfo(): Promise<void>;
+    getReceipt(): Promise<void>;
+    getIframeUrl(): Promise<void>;
+    cancelPayment(): Promise<void>;
+    invalidateInvoice(): Promise<void>;
+    finalizeHold(): Promise<void>;
+    payByRequisites(): Promise<void>;
+    paySync(): Promise<void>;
 }

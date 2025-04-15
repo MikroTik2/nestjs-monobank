@@ -1,3 +1,1 @@
-<template>
-    create
-</template>
+<template>create</template>

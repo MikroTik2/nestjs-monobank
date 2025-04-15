@@ -1,3 +1,1 @@
-<template>
-    introduction
-</template>
+<template>introduction</template>
