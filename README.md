@@ -6,7 +6,7 @@
 
 - Контриб’ютори:
   - Artur Dotsent [MikroTik2](https://artur-dotsent.vercel.app)
-  - Vlad Didyk [vladislav2251](https://vladdidyk.vercel.app)
+  - Vlad Didyk [vladislav2251](https://vladislav-didyk.vercel.app)
 
 ## Ліцензія
 
