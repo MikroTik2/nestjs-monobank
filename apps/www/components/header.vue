@@ -2,7 +2,7 @@
     <header class="fixed inset-x-0 top-0 z-30 border-b-[gray] border-b p-2 border-border backdrop-blur-lg">
         <Container>
             <div class="flex justify-between items-center">
-                NestJs Monobank
+                NestJS Monobank
                 <div class="flex gap-4">
                     <ThemeButton />
                     <Button class="gap-2" size="sm">
