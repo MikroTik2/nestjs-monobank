@@ -1,18 +1,11 @@
-"use strict";
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var MonobankModule_1;
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.MonobankModule = void 0;
-const axios_1 = require("@nestjs/axios");
-const common_1 = require("@nestjs/common");
-const interfaces_1 = require("./interfaces");
-const services_1 = require("./services");
-let MonobankModule = MonobankModule_1 = class MonobankModule {
+import { HttpModule } from "@nestjs/axios";
+import { type DynamicModule, Global, Module } from "@nestjs/common";
+import { type MonobankAsyncOptions, type MonobankOptions, MonobankOptionsSymbol } from "./interfaces";
+import { MonobankService } from "./monobank.service";
+
+@Global()
+@Module({})
+export class MonobankModule {
     /**
      * Метод для реєстрації модуля з синхронними параметрами.
      * Цей метод використовується для конфігурації модуля з наперед заданими параметрами.
@@ -26,21 +19,22 @@ let MonobankModule = MonobankModule_1 = class MonobankModule {
      * });
      * ```
      */
-    static forRoot(options) {
+    public static forRoot(options: MonobankOptions): DynamicModule {
         return {
-            module: MonobankModule_1,
-            imports: [axios_1.HttpModule],
+            module: MonobankModule,
+            imports: [HttpModule],
             providers: [
                 {
-                    provide: interfaces_1.MonobankOptionsSymbol,
+                    provide: MonobankOptionsSymbol,
                     useValue: options,
                 },
-                services_1.MonobankService,
+                MonobankService,
             ],
-            exports: [services_1.MonobankService],
+            exports: [MonobankService],
             global: true,
         };
     }
+
     /**
      * Метод для реєстрації модуля з асинхронною конфігурацією.
      * Цей метод використовується для конфігурації модуля з параметрами, які будуть передані через фабричну функцію.
@@ -58,25 +52,20 @@ let MonobankModule = MonobankModule_1 = class MonobankModule {
      * });
      * ```
      */
-    static forRootAsync(options) {
+    public static forRootAsync(options: MonobankAsyncOptions): DynamicModule {
         return {
-            module: MonobankModule_1,
-            imports: [axios_1.HttpModule, ...(options.imports || [])],
+            module: MonobankModule,
+            imports: [HttpModule, ...(options.imports || [])],
             providers: [
                 {
-                    provide: interfaces_1.MonobankOptionsSymbol,
+                    provide: MonobankOptionsSymbol,
                     useFactory: options.useFactory,
                     inject: options.inject || [],
                 },
-                services_1.MonobankService,
+                MonobankService,
             ],
-            exports: [services_1.MonobankService],
+            exports: [MonobankService],
             global: true,
         };
     }
-};
-exports.MonobankModule = MonobankModule;
-exports.MonobankModule = MonobankModule = MonobankModule_1 = __decorate([
-    (0, common_1.Global)(),
-    (0, common_1.Module)({})
-], MonobankModule);
+}

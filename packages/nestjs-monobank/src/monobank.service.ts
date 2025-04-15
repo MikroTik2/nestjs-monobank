@@ -2,8 +2,8 @@ import { HttpService } from "@nestjs/axios";
 import { HttpException, HttpStatus, Inject, Injectable } from "@nestjs/common";
 import { firstValueFrom } from "rxjs";
 
-import { DEFAULT_URL } from "../constants";
-import { MonobankOptionsSymbol, type InvoiceCreateRequest, type InvoiceDetails, type MonobankOptions } from "../interfaces";
+import { DEFAULT_URL } from "./monobank.constant";
+import { MonobankOptionsSymbol, type InvoiceCreateRequest, type InvoiceDetails, type MonobankOptions } from "./interfaces";
 
 @Injectable()
 export class MonobankService {
