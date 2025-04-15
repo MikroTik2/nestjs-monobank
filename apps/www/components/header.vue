@@ -4,10 +4,8 @@
             <div class="flex justify-between items-center">
                 NestJs Monobank
                 <div class="flex gap-4">
-                    <Button variant="ghost">
-                        <LucideSun size="15"/>
-                    </Button>
-                    <Button class="gap-2" size="sm" variant="secondary">
+                    <ThemeButton />
+                    <Button class="gap-2" size="sm">
                         <LucideGithub size="15"/> 
                         Github
                     </Button>
@@ -17,6 +15,7 @@
     </header>
 </template>
 <script setup lang="ts">
+    import ThemeButton from './ui/theme-button/ThemeButton.vue'
     import Button from './ui/button/Button.vue'
-    import Container from './ui/container/container.vue'
+    import Container from './ui/container/Container.vue'
 </script>
