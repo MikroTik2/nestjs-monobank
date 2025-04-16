@@ -24,12 +24,4 @@ export declare class MonobankService {
      * @returns {Promise<InvoiceStatus>} Відповідь від API з поточним статусом рахунку.
      */
     getInvoiceStatus(invoiceId: string): Promise<InvoiceStatus>;
-    getMerchantInfo(): Promise<void>;
-    getReceipt(): Promise<void>;
-    getIframeUrl(): Promise<void>;
-    cancelPayment(): Promise<void>;
-    invalidateInvoice(): Promise<void>;
-    finalizeHold(): Promise<void>;
-    payByRequisites(): Promise<void>;
-    paySync(): Promise<void>;
 }

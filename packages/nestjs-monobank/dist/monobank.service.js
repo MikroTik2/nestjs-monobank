@@ -69,14 +69,6 @@ let MonobankService = class MonobankService {
             throw new common_1.HttpException(error.response.data.errText || "Помилка під час виконання запиту", common_1.HttpStatus.BAD_REQUEST);
         }
     }
-    async getMerchantInfo() { }
-    async getReceipt() { }
-    async getIframeUrl() { }
-    async cancelPayment() { }
-    async invalidateInvoice() { }
-    async finalizeHold() { }
-    async payByRequisites() { }
-    async paySync() { }
 };
 exports.MonobankService = MonobankService;
 exports.MonobankService = MonobankService = __decorate([
