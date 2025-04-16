@@ -16,8 +16,7 @@
             "install": "npm install --legacy-peer-deps",
             "update": "npm update",
             "upgrade:all": "npm i -g npm-check-updates && ncu -u && npm install",
-            "lint": "turbo run lint",
-            "format": "prettier --write \"**/*.{ts,tsx,md}\""
+            "lint": "turbo run lint"
       },
       "devDependencies": {
             "turbo": "^2.5.0"
