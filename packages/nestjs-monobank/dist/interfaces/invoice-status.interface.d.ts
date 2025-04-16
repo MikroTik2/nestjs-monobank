@@ -30,7 +30,7 @@ export declare enum InvoiceStatusEnum {
     /**
      * Час дії інвойсу вичерпано.
      */
-    EXPIRED = "expired"
+    EXPIRED = "expired",
 }
 /**
  * Інформація про оплату, включаючи дані щодо токенізації картки та чайових.
