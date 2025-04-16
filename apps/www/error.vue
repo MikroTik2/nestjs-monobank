@@ -27,7 +27,7 @@ const goBack = () => {
       <p class="scroll-m-20">
         {{ props.error?.statusCode === 500 ? 'Internal Server Error. Please try again later.' : 'This page could not be found.' }}
       </p>
-      <div class="mt-6 flex items-center gap-8">
+      <div class="mt-6 flex items-center gap-4">
         <NuxtLink @click="goBack" :class="cn(buttonVariants({ size: 'lg' }))">
           Go Back
         </NuxtLink>
