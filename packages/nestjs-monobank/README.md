@@ -1,98 +1,129 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# NestJS Monobank
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Цей модуль дозволяє інтегрувати API Monobank у NestJS-проєкт для роботи з рахунками: створення, перевірка статусу та скасування інвойсів.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Встановлення
 
-## Description
-
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
-
-## Project setup
+Щоб встановити бібліотеку, виконайте команду:
 
 ```bash
-$ npm install
+npm install nestjs-monobank
 ```
 
-## Compile and run the project
+## Підключення в модулі
 
-```bash
-# development
-$ npm run start
+Щоб підключити бібліотеку у вашому проєкті, необхідно використати один із двох методів:
 
-# watch mode
-$ npm run start:dev
+-   forRoot — синхронна конфігурація.
 
-# production mode
-$ npm run start:prod
+-   forRootAsync — асинхронна конфігурація.
+
+**1. Синхронне підключення (forRoot)**
+Використовуйте цей метод, якщо у вас вже є попередньо налаштовані значення для apiKey.
+
+```typescript
+import { Module } from '@nestjs/common'
+import { MonobankModule } from 'nestjs-monobank'
+
+@Module({
+	imports: [
+		MonobankModule.forRoot({
+			apiKey: 'MONOBANK_API_KEY'
+		})
+	]
+})
+export class AppModule {}
 ```
 
-## Run tests
+**2. Асинхронне підключення (forRootAsync)**
+Використовуйте цей метод, якщо ви хочете завантажувати параметри конфігурації асинхронно, наприклад, з бази даних або змінних середовища.
 
-```bash
-# unit tests
-$ npm run test
+```typescript
+import { Module } from '@nestjs/common'
+import { ConfigService } from '@nestjs/config'
+import { MonobankModule } from 'nestjs-monobank'
 
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+@Module({
+	imports: [
+		MonobankModule.forRootAsync({
+			imports: [ConfigModule],
+			useFactory: async (configService: ConfigService) => ({
+				apiKey: configService.getOrThrow('MONOBANK_API_KEY')
+			}),
+			inject: [ConfigService]
+		})
+	]
+})
+export class AppModule {}
 ```
 
-## Deployment
+## Методи
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+**1. Створення рахунку**
+Створює новий рахунок. Цей метод відправляє запит на створення нового рахунку з даними з invoiceData і повертає інформацію про створений рахунок.
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+Параметри:
 
-```bash
-$ npm install -g mau
-$ mau deploy
+-   invoiceData (InvoiceCreateRequest): Дані для створення платежу. Приклад структури даних див. нижче.
+
+```typescript
+const invoiceData: InvoiceCreateRequest = {
+  amount: 1000,
+  ccy: 980, // UAH
+  merchantPaymInfo: {
+    reference: "84d0070ee4e44667b31371d8f8813947",
+    destination: "Покупка щастя"
+  },
+  redirectUrl: "https://example.com/success"
+};
+
+const invoiceResponse = await this.monobankService.createInvoice(invoiceData)
+
+return invoiceResponse
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+**2. Статус рахунку**
+Цей метод надсилає запит на отримання інформації про статус існуючого рахунку.
 
-## Resources
+Параметри:
 
-Check out a few resources that may come in handy when working with NestJS:
+-   invoiceId (string): Унікальний ідентифікатор рахунку.
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+```typescript
+const invoiceId = "khsf8723hsdf8923hf";
+const status = await monobankService.getInvoiceStatus(invoiceId);
 
-## Support
+return status
+```
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+**3. Скасування оплати**
+Скасовує інвойс за його ідентифікатором. Може містити додаткові дані для фіскалізації, якщо це необхідно. Повертає результат скасування.
 
-## Stay in touch
+Параметри:
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+-   cancelData (InvoiceCancelRequest): Об'єкт з деталями скасування.
 
-## License
+```typescript
+const cancelData: InvoiceCancelRequest = {
+	invoiceId: 'p2_9ZgpZVsl3"',
+	extRef: '635ace02599849e981b2cd7a65f417fe',
+	amount: 5000,
+	items: [
+		{
+			name: 'Табуретка',
+			qty: 2,
+			sum: 2100,
+			code: 'product-code',
+			barcode: '1234567890',
+			"header": "Хідер",
+			"footer": "Футер",
+			tax: [],
+			uktzed: 'uktzed-code'
+		}
+	]
+}
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+const cancelResponse = await this.monobankService.cancelPayment(cancelData)
+
+return cancelResponse
+```
