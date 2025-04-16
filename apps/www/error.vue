@@ -21,20 +21,18 @@ function goBack() {
 </script>
 
 <template>
-        <div class="flex flex-col h-[90vh] px-4 text-center items-center justify-center">
-            <span class="bg-gradient-to-b from-foreground to-transparent bg-clip-text text-[10rem] font-extrabold leading-none text-transparent">{{
-                props.error?.statusCode
-            }}</span>
-            <h1 class="font-heading my-2 text-2xl font-semibold">
-                {{ isServerError ? "Помилка сервера" : "Сторінку не знайдено" }}
-            </h1>
-            <p>
-                {{ isServerError ? "Схоже, виникла проблема зі з'єднанням між сервером і сайтом." : "Вибачте, ми не змогли знайти сторінку, яку ви шукаєте." }}
-            </p>
+    <div class="flex flex-col h-[90vh] px-4 text-center items-center justify-center">
+        <span class="bg-gradient-to-b from-foreground to-transparent bg-clip-text text-[10rem] font-extrabold leading-none text-transparent">{{ props.error?.statusCode }}</span>
+        <h1 class="font-heading my-2 text-2xl font-semibold">
+            {{ isServerError ? "Помилка сервера" : "Сторінку не знайдено" }}
+        </h1>
+        <p>
+            {{ isServerError ? "Схоже, виникла проблема зі з'єднанням між сервером і сайтом." : "Вибачте, ми не змогли знайти сторінку, яку ви шукаєте." }}
+        </p>
 
-            <div v-if="!isServerError" class="mt-5 sm:flex-nowrap flex-wrap flex gap-3 items-center justify-center gap-x-2">
-                <Button size="lg" class="w-full sm:w-[inherit]" @click="goBack()"> Повернутись назад </Button>
-                <NuxtLink to="/" :class="cn(buttonVariants({ variant: 'outline', size: 'lg' }), 'w-full sm:w-[inherit]')"> Назад додому </NuxtLink>
-            </div>
+        <div v-if="!isServerError" class="mt-5 sm:flex-nowrap flex-wrap flex gap-3 items-center justify-center gap-x-2">
+            <Button size="lg" class="w-full sm:w-[inherit]" @click="goBack()"> Повернутись назад </Button>
+            <NuxtLink to="/" :class="cn(buttonVariants({ variant: 'outline', size: 'lg' }), 'w-full sm:w-[inherit]')"> Назад додому </NuxtLink>
         </div>
+    </div>
 </template>

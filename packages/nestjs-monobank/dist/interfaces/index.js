@@ -16,4 +16,6 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(require("./invoice-details.interface"), exports);
 __exportStar(require("./invoice-request.interface"), exports);
+__exportStar(require("./invoice-cancel.interface"), exports);
+__exportStar(require("./invoice-status.interface"), exports);
 __exportStar(require("./monobank-options.interface"), exports);
