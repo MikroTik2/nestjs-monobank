@@ -7,12 +7,12 @@ import { buttonVariants } from "./ui/button";
     <header class="bg-whitesm:bg-white/90 fixed inset-x-0 top-0 z-30 border-b border-border drop-shadow-lg sm:backdrop-blur-lg">
         <div class="max-w-8xl relative mx-auto px-4 lg:px-8">
             <div class="md:hidden flex items-center">
-                <MobileNavigation>
+                <!-- <MobileNavigation>
                     <Button id="menu" variant="ghost" size="icon">
                         <LucideMenu class="!size-[18px]" />
                         <span class="hidden">menu</span>
                     </Button>
-                </MobileNavigation>
+                </MobileNavigation> -->
             </div>
             <div class="hidden h-16 w-full items-center justify-between md:flex">
                 <div class="flex items-center justify-start gap-3">
