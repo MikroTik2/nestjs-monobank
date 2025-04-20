@@ -10,7 +10,6 @@ interface MenuItems {
 const menuItems = ref<MenuItems[]>([
     {
         title: "Початок роботи",
-        url: "/",
         items: [
             {
                 title: "Введення",
@@ -22,12 +21,67 @@ const menuItems = ref<MenuItems[]>([
             },
         ],
     },
+    {
+        title: "Платежі",
+        items: [
+            {
+                title: "Створити рахунок",
+                url: "/docs/payments/create-invoice",
+            },
+            {
+                title: "Статус рахунку",
+                url: "/docs/payments/invoice-status",
+            },
+            {
+                title: "Платіж токеном",
+                url: "/docs/payments/create-payment",
+            },
+            {
+                title: "Отримати токен",
+                url: "/docs/payments/get-card-token",
+            },
+            {
+                title: "Видалити токен",
+                url: "/docs/payments/delete-card-token",
+            },
+            {
+                title: "Завершити холд",
+                url: "/docs/payments/complete-hold",
+            },
+            {
+                title: "Фіскальні чеки",
+                url: "/docs/payments/receipts",
+            },
+        ],
+    },
+    {
+        title: "Операції",
+        items: [
+            {
+                title: "Виписка",
+                url: "/docs/operations/statement",
+            },
+        ],
+    },
+    {
+        title: "Повернення",
+        items: [
+            {
+                title: "Скасувати рахунок",
+                url: "/docs/refunds/cancel-invoice",
+            },
+            {
+                title: "Повернення коштів",
+                url: "/docs/refunds/refund-payment",
+            },
+        ],
+    },
 ]);
 </script>
 
 <template>
     <Sidebar>
-        <SidebarContent v-for="(element, i) in menuItems" :key="i" class="gap-0">
+        <SidebarContent v-for="(element, i) in menuItems" :key="i" class="gap-0 !flex-none">
             <Collapsible :key="element.title" :title="element.title" default-open class="group/collapsible">
                 <SidebarGroup>
                     <SidebarGroupLabel as-child class="group/label text-sm text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground">
