@@ -1,6 +1,6 @@
 {
     "name": "nestjs-monobank",
-    "version": "0.0.6",
+    "version": "0.1.0",
     "description": "A NestJS library for integrating with Monobank API",
     "author": {
         "name": "MikroTik_2",
