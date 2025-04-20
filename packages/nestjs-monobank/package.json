@@ -1,22 +1,23 @@
 {
     "name": "nestjs-monobank",
-    "version": "0.0.1",
+    "version": "0.1.0",
     "description": "A NestJS library for integrating with Monobank API",
     "author": {
-		"name": "MikroTik_2",
-		"url": "https://artur-dotsent.vercel.app"
-	},
+        "name": "MikroTik_2",
+        "url": "https://artur-dotsent.vercel.app"
+    },
     "contributors": [
-		{
-			"name": "Artur Dotsent",
-			"email": "dotsenk20034@gmail.com"
-		}
-	],
-    "private": true,
+        {
+            "name": "Artur Dotsent",
+            "email": "dotsenk20034@gmail.com"
+        }
+    ],
+    "private": false,
     "license": "MIT",
     "repository": "git@github.com:MikroTik2/nestjs-monobank.git",
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts",
     "scripts": {
-        "dev": "nest start --watch",
         "build": "tsc -p tsconfig.json",
         "precommit": "lint-staged",
         "prepublish:npm": "npm run build",
@@ -25,26 +26,24 @@
         "lint": "eslint \"{src,apps,libs}/**/*.ts\" --fix"
     },
     "dependencies": {
-        "@nestjs/common": "^11.0.1",
-        "@nestjs/core": "^11.0.1",
-        "@nestjs/platform-express": "^11.0.1",
-        "reflect-metadata": "^0.2.2",
+        "@nestjs/axios": "^4.0.0",
+        "axios": "^1.8.4",
         "rxjs": "^7.8.1"
     },
     "husky": {
-		"hooks": {
-			"pre-commit": "lint-staged",
-			"commit-msg": "commitlint -c .commitlintrc.json -E HUSKY_GIT_PARAMS"
-		}
-	},
+        "hooks": {
+            "pre-commit": "lint-staged",
+            "commit-msg": "commitlint -c .commitlintrc.json -E HUSKY_GIT_PARAMS"
+        }
+    },
     "devDependencies": {
         "@eslint/eslintrc": "^3.2.0",
         "@eslint/js": "^9.18.0",
         "@nestjs/cli": "^11.0.0",
+        "@nestjs/common": "^11.0.17",
+        "@nestjs/core": "^11.0.17",
         "@nestjs/schematics": "^11.0.0",
         "@nestjs/testing": "^11.0.1",
-        "@swc/cli": "^0.6.0",
-        "@swc/core": "^1.10.7",
         "@types/express": "^5.0.0",
         "@types/jest": "^29.5.14",
         "@types/node": "^22.10.7",
