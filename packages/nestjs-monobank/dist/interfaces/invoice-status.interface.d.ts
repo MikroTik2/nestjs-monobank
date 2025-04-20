@@ -1,3 +1,5 @@
+import { TipsInfo, WalletData } from "./common.interface";
+import { InvoiceCancelItem } from "./common.interface";
 /**
  * Перечисление возможных статусов инвойса.
  * @enum {string}
@@ -30,37 +32,56 @@ export declare enum InvoiceStatusEnum {
     /**
      * Час дії інвойсу вичерпано.
      */
-    EXPIRED = "expired",
+    EXPIRED = "expired"
 }
 /**
- * Інформація про оплату, включаючи дані щодо токенізації картки та чайових.
+ * Інформація про здійснений платіж за рахунком.
  */
-export interface InvoiceInfo {
-    status: "processing" | "success" | "failure" | "reversed";
-    walletData: {
-        /**
-         * Токен картки.
-         */
-        cardToken: string;
-        /**
-         * Ідентифікатор гаманця покупця.
-         */
-        walletId: string;
-        /**
-         * Статус токенізації картки.
-         */
-        status: "new" | "created" | "failed";
-    };
-    tipsInfo?: {
-        /**
-         * Ідентифікатор співробітника, якому можна виплатити чайові.
-         */
-        employeeId: string;
-        /**
-         * Сума успішно сплачених чайових у мінімальних одиницях валюти.
-         */
-        amount: number;
-    };
+export interface InvoiceStatusPaymentInfo {
+    /**
+     * Маскований номер картки, з якої здійснено платіж.
+     */
+    maskedPan: string;
+    /**
+     * Код авторизації транзакції.
+     */
+    approvalCode: string;
+    /**
+     * RRN (Retrieval Reference Number) — унікальний ідентифікатор транзакції.
+     */
+    rrn: string;
+    /**
+     * Унікальний ідентифікатор транзакції в системі банку.
+     */
+    tranId: string;
+    /**
+     * Ідентифікатор терміналу, через який проведено оплату.
+     */
+    terminal: string;
+    /**
+     * Назва банку, що обробив платіж.
+     */
+    bank: string;
+    /**
+     * Платіжна система (наприклад, Visa, Mastercard).
+     */
+    paymentSystem: string;
+    /**
+     * Метод оплати (наприклад, картка, Google Pay, Apple Pay).
+     */
+    paymentMethod: string;
+    /**
+     * Комісія, стягнена банком, у мінімальних одиницях валюти.
+     */
+    fee: number;
+    /**
+     * Код країни у форматі ISO 3166-1 numeric (наприклад, 804 — Україна).
+     */
+    country: 804;
+    /**
+     * Комісія агента, якщо застосовується (у мінімальних одиницях).
+     */
+    agentFee: number;
 }
 /**
  * Інформація про статус рахунку.
@@ -113,5 +134,17 @@ export interface InvoiceStatus {
     /**
      * Список прийнятих заявок на скасування.
      */
-    cancelList: InvoiceInfo[];
+    cancelList: InvoiceCancelItem[];
+    /**
+     * Інформація про платіж, що включає деталі транзакції.
+     */
+    paymentInfo: InvoiceStatusPaymentInfo;
+    /**
+     * Дані про гаманця користувача, що зберігає токенізовану картку.
+     */
+    walletData: WalletData;
+    /**
+     * Інформація про чайові, якщо вони були сплачені.
+     */
+    tipsInfo: TipsInfo;
 }

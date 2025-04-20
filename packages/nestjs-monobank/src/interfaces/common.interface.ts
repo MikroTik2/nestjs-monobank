@@ -1,24 +1,7 @@
 /**
- * Дані для збереження картки (токенізації).
- */
-export interface InvoiceSaveCardData {
-    /**
-     * Ознака збереження картки після оплати.
-     * Обов’язкове поле.
-     */
-    saveCard: boolean;
-
-    /**
-     * Ідентифікатор гаманця користувача.
-     * Необов’язкове поле.
-     */
-    walletId?: string;
-}
-
-/**
  * Тип знижки або надбавки.
  */
-export interface InvoiceDiscount {
+export interface Discount {
     /**
      * Тип:
      * - DISCOUNT — знижка
@@ -45,7 +28,7 @@ export interface InvoiceDiscount {
 /**
  * Позиція в кошику замовлення.
  */
-export interface InvoiceBasketItem {
+export interface BasketItem {
     /**
      * Назва товару або послуги.
      * Обов’язкове поле.
@@ -124,13 +107,13 @@ export interface InvoiceBasketItem {
      * Знижки або надбавки, що застосовуються саме до цієї позиції.
      * Необов’язкове поле.
      */
-    discounts?: InvoiceDiscount[];
+    discounts?: Discount[];
 }
 
 /**
  * Інформація про платіж для клієнта та фіскалізації.
  */
-export interface InvoiceMerchantPaymInfoItem {
+export interface MerchantPaymInfoItem {
     /**
      * Номер замовлення або чека, який задає продавець.
      * Необов’язкове поле.
@@ -163,96 +146,52 @@ export interface InvoiceMerchantPaymInfoItem {
      * Враховуються під час фіскалізації (checkbox).
      * Необов’язкове поле.
      */
-    discounts?: InvoiceDiscount[];
+    discounts?: Discount[];
 
     /**
      * Склад замовлення — деталі позицій у кошику.
      * Обов’язкове поле при активній зв’язці з ПРРО.
      */
-    basketOrder?: InvoiceBasketItem[];
+    basketOrder?: BasketItem[];
 }
 
 /**
- * Тип, що представляє запит на створення інвойсу (рахунку).
+ * Дані про токенізовану картку у гаманці користувача.
  */
-export interface InvoiceCreateRequest {
+export interface WalletData {
     /**
-     * Сума оплати у мінімальних одиницях (наприклад, копійки для гривні).
-     * Обов’язкове поле.
+     * Токен картки.
+     */
+    cardToken: string;
+    /**
+     * Ідентифікатор гаманця покупця.
+     */
+    walletId: string;
+    /**
+     * Статус токенізації картки.
+     */
+    status: "new" | "created" | "failed";
+}
+
+/**
+ * Інформація про виплату чайових співробітнику.
+ */
+export interface TipsInfo {
+    /**
+     * Ідентифікатор співробітника, якому можна виплатити чайові.
+     */
+    employeeId: string;
+    /**
+     * Сума успішно сплачених чайових у мінімальних одиницях валюти.
      */
     amount: number;
+}
 
-    /**
-     * Код валюти за стандартом ISO 4217. За замовчуванням — 980 (гривня).
-     * Необов’язкове поле.
-     */
-    ccy?: number;
-
-    /**
-     * Адреса для повернення (GET) після завершення оплати (успішно або з помилкою).
-     * Необов’язкове поле.
-     */
-    redirectUrl?: string;
-
-    /**
-     * Адреса для зворотного виклику (webhook, POST), на яку надсилатиметься інформація про зміну статусу рахунку.
-     * Необов’язкове поле.
-     */
-    webHookUrl?: string;
-
-    /**
-     * Строк дії рахунку в секундах. За замовчуванням — 24 години.
-     * Необов’язкове поле.
-     */
-    validity?: number;
-
-    /**
-     * Тип операції.
-     * 'debit' — списання,
-     * 'hold' — холд коштів на 9 днів.
-     * Необов’язкове поле.
-     */
-    paymentType?: "debit" | "hold";
-
-    /**
-     * Ідентифікатор QR-каси для встановлення суми на існуючих касах.
-     * Необов’язкове поле.
-     */
-    qrId?: string;
-
-    /**
-     * Код терміналу субмерчанта. Доступний лише окремим мерчантам.
-     * Необов’язкове поле.
-     */
-    code?: string;
-
-    /**
-     * Відсоток комісії, який агент встановлює для себе.
-     * Необов’язкове поле.
-     */
-    agentFeePercent?: number;
-
-    /**
-     * Ідентифікатор працівника, який може отримати чайові.
-     * Необов’язкове поле.
-     */
-    tipsEmployeeId?: string;
-
-    /**
-     * Тип відображення платіжної форми. Якщо не вказано — буде звичайне посилання.
-     * Необов’язкове поле.
-     */
-    displayType?: "iframe";
-
-    /**
-     * Інформація про платіж, яка може використовуватись для фіскалізації (checkbox).
-     * Необов’язкове поле.
-     */
-    merchantPaymInfo?: InvoiceMerchantPaymInfoItem;
-
-    /**
-     * Дані для збереження (токенізації) картки після оплати.
-     * Необов’язкове поле.
-     */
-    saveCardData?: InvoiceSaveCardData;
+/**
+ * Інформація про оплату, включаючи дані щодо токенізації картки та чайових.
+ */
+export interface InvoiceCancelItem {
+    status: "processing" | "success" | "failure" | "reversed";
+    walletData: WalletData;
+    tipsInfo?: TipsInfo;
 }
