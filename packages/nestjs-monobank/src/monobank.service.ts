@@ -18,6 +18,7 @@ import {
     type RefundRequest,
     type Statement,
     type Checks,
+    type Merchant,
 } from "./interfaces";
 
 @Injectable()
@@ -56,10 +57,9 @@ export class MonobankService {
     /**
      * Створює рахунок для оплати через Monobank.
      * @param {InvoiceCreateRequest} invoiceData - Дані для створення рахунку.
-     * @returns {Promise<InvoiceDetails>} Відповідь від API з деталями рахунку.
+     * @returns {Promise<Invoice>} Відповідь від API з деталями рахунку.
      *
      * @example
-     * ```ts
      * const invoiceData: InvoiceCreateRequest = {
      *   amount: 1000,
      *   ccy: 980, // UAH
@@ -83,8 +83,7 @@ export class MonobankService {
      * };
      *
      * const invoice = await this.monobankService.createInvoice(invoiceData);
-     * console.log(invoice.pageUrl); // ссылка на оплату
-     * ```
+     * console.log(invoice.pageUrl);
      */
     public async createInvoice(invoiceData: InvoiceCreateRequest): Promise<Invoice> {
         return this.request<Invoice>("post", "/merchant/invoice/create", invoiceData);
@@ -104,7 +103,7 @@ export class MonobankService {
     }
 
     /**
-     * Отправляє запит на повернення коштів по існуючому рахунку.
+     * Відправляє запит на повернення коштів по існуючому рахунку.
      * @param {RefundRequest} refundData - Дані для повернення коштів.
      * @returns {Promise<Refund>} Інформація про статус повернення.
      * @example
@@ -201,5 +200,27 @@ export class MonobankService {
      */
     public async getFiscalReceipts(invoiceId: string): Promise<Checks> {
         return this.request<Checks>("get", `/merchant/invoice/fiscal-checks?invoiceId=${invoiceId}`);
+    }
+
+    /**
+     * Отримує деталі про мерчанта, пов’язаного з поточним API-ключем.
+     * @returns {Promise<Merchant>} Дані про мерчанта.
+     * @example
+     * const merchant = await this.monobankService.getMerchant();
+     * console.log(merchant.edrpou);
+     */
+    public async getMerchant(): Promise<Merchant> {
+        return this.request<Merchant>("get", "/merchant/details");
+    }
+
+    /**
+     * Отримує публічний ключ Monobank, який використовується для перевірки підписів.
+     * @returns {Promise<{ key: string }>} Об'єкт із публічним ключем.
+     * @example
+     * const publicKey = await this.monobankService.getPublicKey();
+     * console.log(publicKey.key);
+     */
+    public async getPublicKey(): Promise<{ key: string }> {
+        return this.request<{ key: string }>("get", "/merchant/pubkey");
     }
 }

@@ -8,3 +8,4 @@ export * from "./statement.interface";
 export * from "./checks.interface";
 export * from "./common.interface";
 export * from "./monobank-options.interface";
+export * from "./merchant.interface";

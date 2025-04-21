@@ -24,3 +24,4 @@ __exportStar(require("./statement.interface"), exports);
 __exportStar(require("./checks.interface"), exports);
 __exportStar(require("./common.interface"), exports);
 __exportStar(require("./monobank-options.interface"), exports);
+__exportStar(require("./merchant.interface"), exports);
