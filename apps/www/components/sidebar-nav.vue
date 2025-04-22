@@ -81,6 +81,11 @@ const menuItems = ref<MenuItems[]>([
 
 <template>
     <Sidebar>
+        <SidebarHeader class="md:hidden block">
+            <SidebarTrigger>
+                <NuxtLink to="/" class="flex items-center gap-x-3 text-xl font-semibold"> NestJS Monobank </NuxtLink>
+            </SidebarTrigger>
+        </SidebarHeader>
         <SidebarContent v-for="(element, i) in menuItems" :key="i" class="gap-0 !flex-none">
             <Collapsible :key="element.title" :title="element.title" default-open class="group/collapsible">
                 <SidebarGroup>
@@ -95,7 +100,9 @@ const menuItems = ref<MenuItems[]>([
                             <SidebarMenu>
                                 <SidebarMenuItem v-for="item in element.items" :key="item.title" class="ml-4">
                                     <SidebarMenuButton as-child>
-                                        <NuxtLink :to="item.url"> {{ item.title }} </NuxtLink>
+                                        <SidebarTrigger>
+                                            <NuxtLink :to="item.url"> {{ item.title }} </NuxtLink>
+                                        </SidebarTrigger>
                                     </SidebarMenuButton>
                                 </SidebarMenuItem>
                             </SidebarMenu>
