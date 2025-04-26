@@ -1,0 +1,30 @@
+---
+title: Видалити токен картки
+description: Як видалити токен картки у гаманці
+---
+
+У цьому розділі ми розглянемо, як видалити картковий токен за допомогою модуля nestjs-monobank. Ми покажемо, як викликати метод deleteCardToken з MonobankService.
+
+<Steps />
+
+### Виклик методу для видалення токена картки
+
+Щоб видалити токен картки, необхідно передати його ідентифікатор у метод deleteCardToken.
+
+```typescript
+import { Injectable } from '@nestjs/common';
+import { MonobankService } from 'nestjs-monobank';
+
+@Injectable()
+export class WalletService {
+     constructor(private readonly monobankService: MonobankService) {}
+
+     async removeCardToken(cardToken: string) {
+          await this.monobankService.deleteCardToken(cardToken);
+     }
+}
+```
+
+### Обробка відповіді від API
+
+У разі успішного видалення токена метод не повертає жодних даних (порожня відповідь).

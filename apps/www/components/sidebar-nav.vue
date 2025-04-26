@@ -33,11 +33,11 @@ const menuItems = ref<MenuItems[]>([
                 url: "/docs/payments/invoice-status",
             },
             {
-                title: "Платіж токеном",
-                url: "/docs/payments/create-payment",
+                title: "Оплата по токену",
+                url: "/docs/payments/create-payment-token",
             },
             {
-                title: "Отримати токен",
+                title: "Отримати токени",
                 url: "/docs/payments/get-card-token",
             },
             {
@@ -67,8 +67,8 @@ const menuItems = ref<MenuItems[]>([
         title: "Повернення",
         items: [
             {
-                title: "Скасувати рахунок",
-                url: "/docs/refunds/cancel-invoice",
+                title: "Скасування оплати",
+                url: "/docs/refunds/cancel-payment",
             },
             {
                 title: "Повернення коштів",
@@ -81,9 +81,9 @@ const menuItems = ref<MenuItems[]>([
 
 <template>
     <Sidebar>
-        <SidebarHeader class="md:hidden block">
+        <SidebarHeader class="md:hidden py-3 border-b block">
             <SidebarTrigger>
-                <NuxtLink to="/" class="flex items-center gap-x-3 text-xl font-semibold"> NestJS Monobank </NuxtLink>
+                <NuxtLink to="/" class="flex items-center ml-1 gap-x-3 text-xl font-semibold"> NestJS Monobank </NuxtLink>
             </SidebarTrigger>
         </SidebarHeader>
         <SidebarContent v-for="(element, i) in menuItems" :key="i" class="gap-0 !flex-none">
@@ -99,10 +99,18 @@ const menuItems = ref<MenuItems[]>([
                         <SidebarGroupContent>
                             <SidebarMenu>
                                 <SidebarMenuItem v-for="item in element.items" :key="item.title" class="ml-4">
-                                    <SidebarMenuButton as-child>
+                                    <SidebarMenuButton class="md:hidden relative flex" as-child>
                                         <SidebarTrigger>
-                                            <NuxtLink :to="item.url"> {{ item.title }} </NuxtLink>
+                                            <NuxtLink :to="item.url" class="inset-0 left-2 absolute flex items-center">
+                                                {{ item.title }}
+                                            </NuxtLink>
                                         </SidebarTrigger>
+                                    </SidebarMenuButton>
+
+                                    <SidebarMenuButton class="hidden relative md:flex" as-child>
+                                        <NuxtLink :to="item.url">
+                                                {{ item.title }}
+                                        </NuxtLink>
                                     </SidebarMenuButton>
                                 </SidebarMenuItem>
                             </SidebarMenu>

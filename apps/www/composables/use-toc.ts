@@ -1,3 +1,5 @@
+import { isClient } from "@vueuse/core";
+
 interface TocItem {
     id: string;
     text: string;
