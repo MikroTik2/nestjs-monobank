@@ -13,8 +13,8 @@ description: Кроки для повернення коштів
 
 
 ```typescript
-import { Injectable } from '@nestjs/common'
-import { type RefundRequest, MonobankService } from 'nestjs-monobank'
+import { Injectable } from '@nestjs/common';
+import { type RefundRequest, MonobankService } from 'nestjs-monobank';
 
 @Injectable()
 export class InvoiceService {
@@ -22,11 +22,10 @@ export class InvoiceService {
 
   	async cancelInvoice() {
     		const refundData: RefundRequest = {
-       			invoiceId: 'p2_9ZgpZVsl3',
+			invoiceId: 'p2_9ZgpZVsl3',
     		}
 
     		const refund = await this.monobankService.refund(refundData)
-
     		return refund
   	}
 }

@@ -12,7 +12,7 @@ description: Кроки для створення рахунку
 Для створення рахунку вам необхідно підготувати об'єкт InvoiceCreateRequest, який містить усю необхідну інформацію про рахунок. Найважливіші поля включають суму рахунку.
 
 ```typescript
-import { type InvoiceCreateRequest } from 'nestjs-monobank'
+import { type InvoiceCreateRequest } from 'nestjs-monobank';
 
 const invoiceData: InvoiceCreateRequest = {
      amount: 1000,
@@ -42,6 +42,7 @@ const invoiceData: InvoiceCreateRequest = {
 Тепер, коли у вас є дані для рахунку, ви можете використати метод createInvoice із сервісу MonobankService для надсилання даних на сервер Monobank та отримання інформації про створений рахунок.
 
 ```typescript
+import { Injectable } from '@nestjs/common';
 import { type InvoiceCreateRequest, MonobankService } from 'nestjs-monobank';
 
 @Injectable()

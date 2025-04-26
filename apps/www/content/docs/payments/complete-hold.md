@@ -15,8 +15,8 @@ description: Як завершити утримання коштів за рах
 import { type CaptureHoldRequest } from 'nestjs-monobank';
 
 const captureData: CaptureHoldRequest = {
-     invoiceId: "2210012MPLYwJjVUzchj", // Ідентифікатор рахунку
-     amount: 4200 // Сума для списання у копійках (наприклад, 4200 = 42.00 грн)
+     invoiceId: "2210012MPLYwJjVUzchj", // ідентифікатор рахунку
+     amount: 4200 // сума для списання у копійках (наприклад, 4200 = 42.00 грн)
 };
 ```
 
@@ -25,7 +25,8 @@ const captureData: CaptureHoldRequest = {
 Після підготовки даних можна викликати метод captureHold, щоб надіслати запит на сервер Monobank.
 
 ```typescript
-import { MonobankService } from 'nestjs-monobank';
+import { Injectable } from '@nestjs/common';
+import { type CaptureHoldRequest, MonobankService } from 'nestjs-monobank';
 
 @Injectable()
 export class PaymentService {
@@ -38,7 +39,7 @@ export class PaymentService {
           };
 
           const captureResult = await this.monobankService.captureHold(captureData);
-          return captureResult.status;
+          return captureResult;
      }
 }
 ```

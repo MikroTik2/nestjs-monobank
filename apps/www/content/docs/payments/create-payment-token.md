@@ -12,8 +12,8 @@ description: Як створити платіж, використовуючи к
 Метод createWithCardToken дозволяє створити платіж, використовуючи дані токенізованої картки.
 
 ```typescript
-import { MonobankService } from 'nestjs-monobank';
-import { CardTokenRequest } from 'nestjs-monobank';
+import { Injectable } from '@nestjs/common';
+import { type CardTokenRequest, MonobankService } from 'nestjs-monobank';
 
 @Injectable()
 export class PaymentService {

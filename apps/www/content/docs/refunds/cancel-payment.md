@@ -12,8 +12,8 @@ description: Кроки для скасування оплати
 Використовуйте метод `cancel` з `monobankService`. Цей метод надішле запит до API Monobank на скасування платежу за його ідентифікатором.
 
 ```typescript
-import { Injectable } from '@nestjs/common'
-import { MonobankService } from 'nestjs-monobank'
+import { Injectable } from '@nestjs/common';
+import { MonobankService } from 'nestjs-monobank';
 
 @Injectable()
 export class PaymentService {

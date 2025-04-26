@@ -12,6 +12,7 @@ description: Кроки для отримання статусу рахунку
 Щоб дізнатися статус рахунку, потрібно скористатися методом getInvoiceStatus, передавши в нього ідентифікатор рахунку.
 
 ```typescript
+import { Injectable } from '@nestjs/common';
 import { MonobankService } from 'nestjs-monobank';
 
 @Injectable()
@@ -19,7 +20,7 @@ export class InvoiceService {
   	constructor(private readonly monobankService: MonobankService) {}
 
   	async checkInvoiceStatus() {
-    		const invoiceId = 'khsf8723hsdf8923hf'; // Унікальний ID рахунку
+    		const invoiceId = 'khsf8723hsdf8923hf'; // унікальний ID рахунку
 
     		const status = await this.monobankService.getInvoiceStatus(invoiceId);
     		return status;

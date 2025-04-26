@@ -12,7 +12,7 @@ description: Кроки до отримання виписки за період
 Щоб отримати список транзакцій за певний період, скористайтеся методом items, передавши у нього часові мітки початку та (опціонально) кінця періоду у форматі Unix.
 
 ```typescript
-import { Injectable } from '@nestjs/common'
+import { Injectable } from '@nestjs/common';
 import { MonobankService } from 'nestjs-monobank';
 
 @Injectable()
@@ -20,7 +20,7 @@ export class StatementService {
      constructor(private readonly monobankService: MonobankService) {}
 
      async getStatement() {
-          const accountId = 'ZuHWzqkKGVo=';
+          const accountId = '0';
           const from = '1680000000';
           const to = '1681000000';
 
