@@ -126,16 +126,19 @@ let MonobankService = class MonobankService {
     }
     /**
      * Отримує виписки по рахунках за заданий період.
-     * @param {number} from - Початковий час в Unix форматі.
-     * @param {number} [to] - Кінцевий час в Unix форматі.
-     * @param {string} [code] - Курсова валюта.
+     * @param {string} account - Ідентифікатор рахунку (наприклад, номер картки). 0 — основний рахунок в UAH.
+     * @param {string} from - Початковий час періоду в форматі Unix time (секунди).
+     * @param {string} [to] - Кінцевий час періоду в форматі Unix time (секунди). Якщо не вказано, використовується поточний час.
      * @returns {Promise<Statement>} Список операцій за період.
      * @example
-     * const statement = await this.monobankService.items(1680000000, 1681000000);
+     * const statement = await this.monobankService.items('0', '1680000000', '1681000000');
      * console.log(statement.items);
      */
-    async items(from, to, code) {
-        return this.request("get", `/merchant/statement?from=${from}&to=${to}&code=${code}`);
+    async items(account, from, to) {
+        const url = to
+            ? `/merchant/statement/${account}/${from}/${to}`
+            : `/merchant/statement/${account}/${from}`;
+        return this.request("get", url);
     }
     /**
      * Створює платіж з використанням карткового токена.
