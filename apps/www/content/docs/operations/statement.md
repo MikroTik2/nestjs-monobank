@@ -20,7 +20,7 @@ export class StatementService {
      constructor(private readonly monobankService: MonobankService) {}
 
      async getStatement() {
-          const accountId = 'ZuHWzqkKGVo=';
+          const accountId = '0';
           const from = '1680000000';
           const to = '1681000000';
 
