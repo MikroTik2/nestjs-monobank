@@ -18,11 +18,9 @@ const { data: page } = await useAsyncData(route.path, () => queryCollection("con
                 </p>
             </div>
 
-            <div class="prose prose-neutral content-body dark:prose-invert pb-12 pt-8">
+            <div class="prose prose-neutral dark:prose-invert content-body pb-12 pt-8">
                 <ContentRenderer v-if="page?.body" :value="page?.body" />
             </div>
-
-            <Pager />
 
             <div class="mt-10 xl:hidden">
                 <Toc />
@@ -93,6 +91,7 @@ main {
         margin-top: 1.5rem;
         margin-bottom: 1rem;
         overflow-x: auto;
+        font-size: 0.9rem;
     }
 
     p {

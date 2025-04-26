@@ -1,5 +1,5 @@
 import { HttpService } from "@nestjs/axios";
-import { type MonobankOptions, type InvoiceStatus, type Invoice, type InvoiceCreateRequest, type CardToken, type CardTokens, type CardTokenRequest, type CaptureHold, type CaptureHoldRequest, type Refund, type RefundRequest, type Statement, type Checks } from "./interfaces";
+import { type MonobankOptions, type InvoiceStatus, type Invoice, type InvoiceCreateRequest, type CardToken, type CardTokens, type CardTokenRequest, type CaptureHold, type CaptureHoldRequest, type Refund, type RefundRequest, type Statement, type Checks, type Merchant } from "./interfaces";
 export declare class MonobankService {
     private readonly options;
     private readonly httpService;
@@ -10,10 +10,9 @@ export declare class MonobankService {
     /**
      * Створює рахунок для оплати через Monobank.
      * @param {InvoiceCreateRequest} invoiceData - Дані для створення рахунку.
-     * @returns {Promise<InvoiceDetails>} Відповідь від API з деталями рахунку.
+     * @returns {Promise<Invoice>} Відповідь від API з деталями рахунку.
      *
      * @example
-     * ```ts
      * const invoiceData: InvoiceCreateRequest = {
      *   amount: 1000,
      *   ccy: 980, // UAH
@@ -37,8 +36,7 @@ export declare class MonobankService {
      * };
      *
      * const invoice = await this.monobankService.createInvoice(invoiceData);
-     * console.log(invoice.pageUrl); // ссылка на оплату
-     * ```
+     * console.log(invoice.pageUrl);
      */
     createInvoice(invoiceData: InvoiceCreateRequest): Promise<Invoice>;
     /**
@@ -52,7 +50,7 @@ export declare class MonobankService {
      */
     getInvoiceStatus(invoiceId: string): Promise<InvoiceStatus>;
     /**
-     * Отправляє запит на повернення коштів по існуючому рахунку.
+     * Відправляє запит на повернення коштів по існуючому рахунку.
      * @param {RefundRequest} refundData - Дані для повернення коштів.
      * @returns {Promise<Refund>} Інформація про статус повернення.
      * @example
@@ -82,15 +80,15 @@ export declare class MonobankService {
     captureHold(captureData: CaptureHoldRequest): Promise<CaptureHold>;
     /**
      * Отримує виписки по рахунках за заданий період.
-     * @param {number} from - Початковий час в Unix форматі.
-     * @param {number} [to] - Кінцевий час в Unix форматі.
-     * @param {string} [code] - Курсова валюта.
+     * @param {string} account - Ідентифікатор рахунку (наприклад, номер картки). 0 — основний рахунок в UAH.
+     * @param {string} from - Початковий час періоду в форматі Unix time (секунди).
+     * @param {string} [to] - Кінцевий час періоду в форматі Unix time (секунди). Якщо не вказано, використовується поточний час.
      * @returns {Promise<Statement>} Список операцій за період.
      * @example
-     * const statement = await this.monobankService.items(1680000000, 1681000000);
+     * const statement = await this.monobankService.items('0', '1680000000', '1681000000');
      * console.log(statement.items);
      */
-    items(from: number, to?: number, code?: string): Promise<Statement>;
+    items(account: string, from: string, to?: string): Promise<Statement>;
     /**
      * Створює платіж з використанням карткового токена.
      * @param {CardTokenRequest} paymentData - Дані для створення платежу.
@@ -127,4 +125,22 @@ export declare class MonobankService {
      * console.log(checks);
      */
     getFiscalReceipts(invoiceId: string): Promise<Checks>;
+    /**
+     * Отримує деталі про мерчанта, пов’язаного з поточним API-ключем.
+     * @returns {Promise<Merchant>} Дані про мерчанта.
+     * @example
+     * const merchant = await this.monobankService.getMerchant();
+     * console.log(merchant.edrpou);
+     */
+    getMerchant(): Promise<Merchant>;
+    /**
+     * Отримує публічний ключ Monobank, який використовується для перевірки підписів.
+     * @returns {Promise<{ key: string }>} Об'єкт із публічним ключем.
+     * @example
+     * const publicKey = await this.monobankService.getPublicKey();
+     * console.log(publicKey.key);
+     */
+    getPublicKey(): Promise<{
+        key: string;
+    }>;
 }

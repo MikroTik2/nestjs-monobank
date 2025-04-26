@@ -6,7 +6,7 @@ const { tocItems, activeId, level } = useToc();
 
 <template>
     <div v-if="tocItems.length" class="hidden text-sm xl:block">
-        <div class="fixed -mt-4 h-[calc(100vh-3.5rem)] pt-4">
+        <div class="fixed -mt-4 h-[calc(100vh-3.5rem)] pr-5 pt-4">
             <div class="no-scrollbar h-full overflow-auto pb-10">
                 <div class="space-y-2">
                     <p class="font-medium">На цій сторінці</p>

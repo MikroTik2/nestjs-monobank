@@ -1,7 +1,7 @@
 <template>
     <div class="mx-auto w-full border-border/40 dark:border-border md:overflow-hidden">
-        <Header />
         <SidebarProvider>
+            <Header />
             <SidebarNav class="pt-16" />
 
             <SidebarInset>
