@@ -12,7 +12,7 @@ description: Кроки до отримання виписки за період
 Щоб отримати список транзакцій за певний період, скористайтеся методом items, передавши у нього часові мітки початку та (опціонально) кінця періоду у форматі Unix.
 
 ```typescript
-import { Injectable } from '@nestjs/common'
+import { Injectable } from '@nestjs/common';
 import { MonobankService } from 'nestjs-monobank';
 
 @Injectable()
