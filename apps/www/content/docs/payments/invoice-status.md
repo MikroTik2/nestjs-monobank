@@ -34,50 +34,50 @@ export class InvoiceService {
 
 ```json
 {
-    "invoiceId": "p2_9ZgpZVsl3",
-    "status": null,
-    "failureReason": "Неправильний CVV код",
-    "errCode": "59",
-    "amount": 4200,
-    "ccy": 980,
-    "finalAmount": 4200,
-    "createdDate": null,
-    "modifiedDate": null,
-    "reference": "84d0070ee4e44667b31371d8f8813947",
-    "destination": "Покупка щастя",
+    "invoiceId": "p2_9ZgpZVsl3", // ідентифікатор рахунку
+    "status": null, // статус рахунку (created, processing, hold, success, failure, reversed, expired)
+    "failureReason": "Неправильний CVV код", // причина відмови у проведенні платежу (заповнюється при статусі failure)
+    "errCode": "59", // код помилки, що виникла під час обробки платежу
+    "amount": 4200, // сума рахунку в копійках (наприклад, 4200 = 42.00 грн)
+    "ccy": 980, // валюта рахунку (код ISO 4217, 980 = гривня)
+    "finalAmount": 4200, // фінальна сума після врахування комісій або часткових повернень
+    "createdDate": null, // дата створення рахунку
+    "modifiedDate": null, // дата останньої модифікації рахунку
+    "reference": "84d0070ee4e44667b31371d8f8813947", // унікальний референс, який встановлюється продавцем
+    "destination": "Покупка щастя", // призначення платежу, яке бачить користувач
     "cancelList": [
         {
-            "status": null,
-            "amount": 4200,
-            "ccy": 980,
-            "createdDate": null,
-            "modifiedDate": null,
-            "approvalCode": "662476",
-            "rrn": "060189181768",
-            "extRef": "635ace02599849e981b2cd7a65f417fe"
+            "status": null, // статус заявки на скасування (processing, success, failure)
+            "amount": 4200, // сума скасованої транзакції в копійках
+            "ccy": 980, // валюта транзакції (код ISO 4217)
+            "createdDate": null, // дата створення заявки на скасування
+            "modifiedDate": null, // дата останнього оновлення заявки
+            "approvalCode": "662476", // код авторизації транзакції
+            "rrn": "060189181768", // унікальний ідентифікатор транзакції в платіжній системі
+            "extRef": "635ace02599849e981b2cd7a65f417fe" // зовнішній референс, який встановлюється продавцем
         }
     ],
     "paymentInfo": {
-        "maskedPan": "444403******1902",
-        "approvalCode": "662476",
-        "rrn": "060189181768",
-        "tranId": "13194036",
-        "terminal": "MI001088",
-        "bank": "Універсал Банк",
-        "paymentSystem": "visa",
-        "paymentMethod": null,
-        "fee": null,
-        "country": "804",
-        "agentFee": null
+        "maskedPan": "444403******1902", // маскований номер картки
+        "approvalCode": "662476", // код авторизації платежу
+        "rrn": "060189181768", // ідентифікатор транзакції в платіжній системі
+        "tranId": "13194036", // ідентифікатор транзакції в системі банку
+        "terminal": "MI001088", // ідентифікатор терміналу, через який проведено платіж
+        "bank": "Універсал Банк", // назва банку, що випустив картку
+        "paymentSystem": "visa", // платіжна система (visa, mastercard)
+        "paymentMethod": null, // спосіб оплати (pan, apple, google, monobank, wallet, direct)
+        "fee": null, // еквайрингова комісія в копійках
+        "country": "804", // країна банку (код ISO 3166-1 numeric)
+        "agentFee": null // комісія агента в копійках
     },
     "walletData": {
-        "cardToken": "67XZtXdR4NpKU3",
-        "walletId": "c1376a611e17b059aeaf96b73258da9c",
-        "status": null
+        "cardToken": "67XZtXdR4NpKU3", // токен картки
+        "walletId": "c1376a611e17b059aeaf96b73258da9c", // ідентифікатор гаманця
+        "status": null // статус токенізації картки (new, created, failed)
     },
     "tipsInfo": {
-        "employeeId": null,
-        "amount": 4200
+        "employeeId": null, // ідентифікатор співробітника, якому нараховуються чайові
+        "amount": 4200 // сума успішно сплачених чайових у копійках
     }
 }
 ```

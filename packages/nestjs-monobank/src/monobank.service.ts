@@ -151,9 +151,7 @@ export class MonobankService {
      * console.log(statement.items);
      */
     public async items(account: string, from: string, to?: string): Promise<Statement> {
-        const url = to
-            ? `/merchant/statement/${account}/${from}/${to}`
-            : `/merchant/statement/${account}/${from}`;
+        const url = to ? `/merchant/statement/${account}/${from}/${to}` : `/merchant/statement/${account}/${from}`;
         return this.request<Statement>("get", url);
     }
 
