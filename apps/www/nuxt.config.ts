@@ -18,7 +18,10 @@ export default defineNuxtConfig({
         head: {
             title: "NestJS Monobank — Інтеграція Monobank API для NestJS",
             meta: [
-                { name: "description", content: "Простий та зручний модуль для інтеграції Monobank у NestJS додатки. Створення рахунків, скасування платежів, перевірка статусів та більше." },
+                {
+                    name: "description",
+                    content: "Простий та зручний модуль для інтеграції Monobank у NestJS додатки. Створення рахунків, скасування платежів, перевірка статусів та більше.",
+                },
                 { name: "keywords", content: "nestjs, monobank, api, інтеграція, платежі, інвойс, оплата, nestjs monobank" },
                 { property: "og:title", content: "NestJS Monobank — Інтеграція Monobank API для NestJS" },
                 { property: "og:description", content: "Використовуйте nestjs-monobank для швидкої інтеграції платіжних функцій Monobank у ваші проекти на NestJS." },

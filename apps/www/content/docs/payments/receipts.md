@@ -32,15 +32,15 @@ export class ReceiptService {
 
 ```json
 {
-     "checks": [ // Масив фіскальних чеків
+     "checks": [ // масив фіскальних чеків
           {
-               "id": "a2fd4aef-cdb8-4e25-9b36-b6d4672c554d", // Унікальний ідентифікатор чеку
-               "type": "sale", // Тип операції (наприклад, 'sale' - продаж)
-               "status": "done", // Статус чеку (наприклад, 'done' - успішно завершено)
-               "statusDescription": "", // Опис статусу (може бути порожнім)
-               "taxUrl": "https://cabinet.tax.gov.ua/cashregs/check", // Посилання на перевірку чеку на сайті податкової
-               "file": "CJFVBERi0xLj4QKJaqrrK0KMSAw123I4G9ia3go38PAovQ43JlYXRvciAoQXBhY2hl5IEZPUCBWZXJzaW9uIfDIuMykKL...", // Закодований файл чеку (формат Base64)
-               "fiscalizationSource": "monopay" // Джерело фіскалізації (наприклад, 'monopay')
+               "id": "a2fd4aef-cdb8-4e25-9b36-b6d4672c554d", // унікальний ідентифікатор чеку
+               "type": "sale", // тип операції (наприклад, 'sale' - продаж)
+               "status": "done", // статус чеку (наприклад, 'done' - успішно завершено)
+               "statusDescription": "", // опис статусу (може бути порожнім)
+               "taxUrl": "https://cabinet.tax.gov.ua/cashregs/check", // посилання на перевірку чеку на сайті податкової
+               "file": "CJFVBERi0xLj4QKJaqrrK0KMSAw123I4G9ia3go38PAovQ43JlYXRvciAoQXBhY2hl5IEZPUCBWZXJzaW9uIfDIuMykKL...", // закодований файл чеку (формат Base64)
+               "fiscalizationSource": "monopay" // джерело фіскалізації (наприклад, 'monopay')
           }
      ]
 }

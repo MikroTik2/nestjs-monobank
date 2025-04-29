@@ -76,6 +76,15 @@ const menuItems = ref<MenuItems[]>([
             },
         ],
     },
+    {
+        title: "Мерчант",
+        items: [
+            {
+                title: "Інформація про мерчанта",
+                url: "/docs/merchant/details",
+            },
+        ],
+    },
 ]);
 </script>
 
@@ -109,7 +118,7 @@ const menuItems = ref<MenuItems[]>([
 
                                     <SidebarMenuButton class="hidden relative md:flex" as-child>
                                         <NuxtLink :to="item.url">
-                                                {{ item.title }}
+                                            {{ item.title }}
                                         </NuxtLink>
                                     </SidebarMenuButton>
                                 </SidebarMenuItem>
