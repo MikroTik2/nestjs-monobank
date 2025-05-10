@@ -143,4 +143,15 @@ export declare class MonobankService {
     getPublicKey(): Promise<{
         key: string;
     }>;
+    /**
+     * Перевіряє підпис вебхука, використовуючи публічний ключ Monobank.
+     * @param {string} rawBody - Сирове тіло запиту (без парсингу).
+     * @param {string} xSignBase64 - Підпис з заголовка X-Signature у форматі base64.
+     * @returns {Promise<boolean>} Чи є підпис дійсним.
+     *
+     * @example
+     * const isValid = await this.monobankService.verifyWebhookSignature(rawBody, xSign);
+     * if (!isValid) throw new ForbiddenException("Невірний підпис");
+     */
+    verifyWebhookSignature(rawBody: string, xSignBase64: string): Promise<boolean>;
 }
