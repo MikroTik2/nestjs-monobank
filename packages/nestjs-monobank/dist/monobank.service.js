@@ -16,6 +16,7 @@ exports.MonobankService = void 0;
 const axios_1 = require("@nestjs/axios");
 const common_1 = require("@nestjs/common");
 const rxjs_1 = require("rxjs");
+const crypto = require("crypto");
 const monobank_constant_1 = require("./monobank.constant");
 const interfaces_1 = require("./interfaces");
 let MonobankService = class MonobankService {
@@ -135,9 +136,7 @@ let MonobankService = class MonobankService {
      * console.log(statement.items);
      */
     async items(account, from, to) {
-        const url = to
-            ? `/merchant/statement/${account}/${from}/${to}`
-            : `/merchant/statement/${account}/${from}`;
+        const url = to ? `/merchant/statement/${account}/${from}/${to}` : `/merchant/statement/${account}/${from}`;
         return this.request("get", url);
     }
     /**
@@ -203,6 +202,29 @@ let MonobankService = class MonobankService {
      */
     async getPublicKey() {
         return this.request("get", "/merchant/pubkey");
+    }
+    /**
+     * Перевіряє підпис вебхука, використовуючи публічний ключ Monobank.
+     * @param {string} rawBody - Сирове тіло запиту (без парсингу).
+     * @param {string} xSignBase64 - Підпис з заголовка X-Signature у форматі base64.
+     * @returns {Promise<boolean>} Чи є підпис дійсним.
+     *
+     * @example
+     * const isValid = await this.monobankService.verifyWebhookSignature(rawBody, xSign);
+     * if (!isValid) throw new ForbiddenException("Невірний підпис");
+     */
+    async verifyWebhookSignature(rawBody, xSignBase64) {
+        const { key: publicKeyPem } = await this.getPublicKey();
+        const verifier = crypto.createVerify("SHA256");
+        verifier.update(rawBody);
+        verifier.end();
+        const signature = Buffer.from(xSignBase64, "base64");
+        try {
+            return verifier.verify(publicKeyPem, signature);
+        }
+        catch (_a) {
+            return false;
+        }
     }
 };
 exports.MonobankService = MonobankService;

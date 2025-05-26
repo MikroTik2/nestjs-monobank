@@ -20,8 +20,5 @@
       "devDependencies": {
             "turbo": "^2.5.0"
       },
-      "packageManager": "npm@10.8.2",
-      "dependencies": {
-            "@nuxt/content": "^3.4.0"
-      }
+      "packageManager": "npm@10.8.2"
 }

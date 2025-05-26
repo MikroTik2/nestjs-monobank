@@ -1,9 +1,0 @@
-html, body{
-    font-family: "Geist Mono", monospace;
-    scroll-behavior: smooth;
-}
-
-.content-body p {
-    margin-bottom: 24px;
-    line-height: 1.75rem;
-}

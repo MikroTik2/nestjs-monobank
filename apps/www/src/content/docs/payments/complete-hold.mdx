@@ -1,0 +1,57 @@
+---
+title: Завершити утримання коштів
+description: Як завершити утримання коштів за рахунком
+---
+
+У цьому розділі ми розглянемо, як завершити утримання коштів за допомогою методу captureHold із сервісу MonobankService.
+
+<Steps />
+
+### Підготовка даних для завершення утримання
+
+Щоб завершити утримання коштів за рахунком, необхідно підготувати об'єкт CaptureHoldRequest, що містить необхідні дані.
+
+```typescript
+import { type CaptureHoldRequest } from 'nestjs-monobank';
+
+const captureData: CaptureHoldRequest = {
+     invoiceId: "2210012MPLYwJjVUzchj", // ідентифікатор рахунку
+     amount: 4200 // сума для списання у копійках (наприклад, 4200 = 42.00 грн)
+};
+```
+
+### Виклик методу для завершення утримання коштів
+
+Після підготовки даних можна викликати метод captureHold, щоб надіслати запит на сервер Monobank.
+
+```typescript
+import { Injectable } from '@nestjs/common';
+import { type CaptureHoldRequest, MonobankService } from 'nestjs-monobank';
+
+@Injectable()
+export class PaymentService {
+     constructor(private readonly monobankService: MonobankService) {}
+
+     async finalizeHold() {
+          const captureData: CaptureHoldRequest = {
+               invoiceId: "2210012MPLYwJjVUzchj",
+               amount: 4200
+          };
+
+          const captureResult = await this.monobankService.captureHold(captureData);
+          return captureResult;
+     }
+}
+```
+
+### Обробка відповіді від API
+
+Метод повертає об'єкт CaptureHold, що містить статус завершення утримання коштів.
+
+```json
+{
+     "status": "success" // cтатус завершення утримання
+}
+```
+
+Отриманий статус можна використовувати для оновлення інформації про замовлення або сповіщення користувача про успішну оплату.

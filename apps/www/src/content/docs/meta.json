@@ -1,0 +1,27 @@
+{
+  "title": "Документація",
+  "pages": [
+    "---Початок роботи---",
+    "getting-started/installation",
+    "getting-started/introduction",
+
+    "---Платежі---",
+    "payments/create-invoice",
+    "payments/invoice-status",
+    "payments/create-payment-token",
+    "payments/get-card-token",
+    "payments/delete-card-token",
+    "payments/complete-hold",
+    "payments/receipts",
+
+    "---Операції---",
+    "operations/statement",
+
+    "---Повернення---",
+    "refunds/cancel-payment",
+    "refunds/refund-payment",
+
+    "---Мерчант---",
+    "merchant/info"
+  ]
+}
