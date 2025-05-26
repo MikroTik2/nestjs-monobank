@@ -12,6 +12,14 @@
             "email": "dotsenk20034@gmail.com"
         }
     ],
+   	"keywords": [
+  		"nest",
+  		"nestjs",
+  		"nestjs-module",
+  		"monobank",
+  		"invoice",
+  		"payment"
+  	],
     "private": false,
     "license": "MIT",
     "homepage": "https://nestjs-monobank.vercel.app",
