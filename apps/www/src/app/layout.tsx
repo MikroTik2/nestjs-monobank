@@ -8,7 +8,7 @@ import '@/styles/globals.css'
 export const metadata: Metadata = {
 	title: 'NestJS Monobank',
 	description:
-		'Интеграция с Monobank API на основе NestJS: создание счетов, обработка платежей, вебхуки и многое другое.'
+		'Інтеграція з Monobank API на основі NestJS: створення рахунків, обробка платежів, вебхуки та багато іншого.'
 }
 
 export const viewport: Viewport = {
