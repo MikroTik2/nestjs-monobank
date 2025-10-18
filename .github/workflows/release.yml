@@ -16,28 +16,28 @@ jobs:
         shell: bash
 
     steps:
-      - name: 📥 Checkout repository
+      - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: 📦 Set up PNPM
+      - name: Set up PNPM
         uses: pnpm/action-setup@v2
         with:
           version: 9
 
-      - name: 🧰 Set up Node.js
+      - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 18
           registry-url: 'https://registry.npmjs.org/'
           cache: 'pnpm'
 
-      - name: 📥 Install dependencies
+      - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
       - name: 🛠️ Build packages
         run: pnpm build:packages
 
-      - name: 🕵️‍♂️ Check if version exists on npm
+      - name: Check if version exists on npm
         id: check_version
         run: |
           VERSION=$(jq -r '.version' packages/nestjs-monobank/package.json)
