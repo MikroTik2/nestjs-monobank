@@ -237,7 +237,7 @@ export class MonobankService {
      * const isValid = await this.monobankService.verifyWebhookSignature(rawBody, xSign);
      * if (!isValid) throw new ForbiddenException("Невірний підпис");
      */
-    public async verifyWebhookSignature(rawBody: string, xSignBase64: string): Promise<boolean> {
+    public async verifyWebhookSignature(rawBody: Buffer, xSignBase64: string): Promise<boolean> {
         const { key: publicKeyPem } = await this.getPublicKey();
 
         const verifier = crypto.createVerify("SHA256");
