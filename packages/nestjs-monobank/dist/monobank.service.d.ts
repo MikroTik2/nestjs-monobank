@@ -150,8 +150,8 @@ export declare class MonobankService {
      * @returns {Promise<boolean>} Чи є підпис дійсним.
      *
      * @example
-     * const isValid = await this.monobankService.verifyWebhookSignature(rawBody, xSign);
+     * const isValid = await this.monobankService.verifyWebhookSignature(rawBody, signature);
      * if (!isValid) throw new ForbiddenException("Невірний підпис");
      */
-    verifyWebhookSignature(rawBody: string, xSignBase64: string): Promise<boolean>;
+    verifyWebhookSignature(rawBody: Buffer, xSignBase64: string): Promise<boolean>;
 }

@@ -210,21 +210,17 @@ let MonobankService = class MonobankService {
      * @returns {Promise<boolean>} Чи є підпис дійсним.
      *
      * @example
-     * const isValid = await this.monobankService.verifyWebhookSignature(rawBody, xSign);
+     * const isValid = await this.monobankService.verifyWebhookSignature(rawBody, signature);
      * if (!isValid) throw new ForbiddenException("Невірний підпис");
      */
     async verifyWebhookSignature(rawBody, xSignBase64) {
-        const { key: publicKeyPem } = await this.getPublicKey();
+        const { key: publicKeyBase64 } = await this.getPublicKey();
+        const sign = Buffer.from(xSignBase64, "base64");
+        const publicKey = Buffer.from(publicKeyBase64, "base64");
         const verifier = crypto.createVerify("SHA256");
-        verifier.update(rawBody);
+        verifier.write(rawBody);
         verifier.end();
-        const signature = Buffer.from(xSignBase64, "base64");
-        try {
-            return verifier.verify(publicKeyPem, signature);
-        }
-        catch (_a) {
-            return false;
-        }
+        return verifier.verify({ key: publicKey, format: "pem", type: "spki" }, sign);
     }
 };
 exports.MonobankService = MonobankService;
