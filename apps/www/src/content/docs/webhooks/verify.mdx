@@ -1,0 +1,75 @@
+---
+title: Приклади верифікації підпису
+description: Перевірка підпису X-Sign для вебхуків за стандартом ECDSA.
+---
+
+# Webhooks
+
+Цей вебхук сповіщає вашу систему про зміну статусу рахунку. Бекенд надсилає POST-запит на вказану вами URL-адресу та додає криптографічний підпис для підтвердження автентичності даних.
+
+---
+
+## Як працює вебхук
+
+### 1. Подія, що тригерить вебхук
+Вебхук викликається щоразу при зміні статусу рахунку.
+
+### 2. Доставка POST-запиту
+Бекенд надсилає запит на ваш endpoint:
+- Якщо відповідь ≠ **HTTP 200 OK**, виконується до **3 повторних спроб** доставки.
+
+### 3. Заголовки запиту
+
+| Заголовок      | Опис |
+|----------------|------|
+| `Content-Type: application/json` | Тіло запиту в форматі JSON |
+| `X-Sign` | Підпис тіла запиту, згенерований ECDSA |
+
+### 4. Безпека
+- Заголовок `X-Sign` підтверджує **цілісність** і **автентичність** даних.
+- Підпис формується алгоритмом **ECDSA** на основі цілого JSON-тіла.
+- Сервер має перевіряти підпис перед обробкою даних.
+
+---
+
+## Механізм повторення запитів
+Якщо ваш сервер повернув код, відмінний від `200 OK`, бекенд виконає до **трьох повторних спроб** надсилання вебхука.
+
+---
+
+## Аутентифікація
+- Верифікація виконується шляхом перевірки підпису з заголовка `X-Sign`.
+- Алгоритм: **ECDSA**.
+- Дані, що підписуються: **повний JSON body у тому вигляді, у якому він був надісланий**.
+- Для перевірки підпису вам потрібен публічний ключ сервера еквайрингу.
+
+---
+
+# Приклади верифікації підпису
+
+```ts
+import { BadRequestException, Injectable, Logger } from '@nestjs/common'
+import { MonobankService } from 'nestjs-monobank'
+import * as crypto from 'crypto'
+
+@Injectable()
+export class WebhookService {
+	private readonly logger = new Logger(WebhookService.name)
+
+	public constructor(
+		private readonly monobankService: MonobankService
+	) {}
+
+	public async handleMonobank({ rawBody, signature, payload }: { rawBody: string; signature: string; payload: any }) {
+		this.logger.log(`Received Monobank webhook: ${payload.reference}`)
+
+		const isValid = await this.monobankService.verifyWebhookSignature(Buffer.from(rawBody), signature)
+		if (!isValid) {
+			this.logger.warn(`Invalid Monobank webhook signature for reference: ${payload.reference}`)
+			throw new BadRequestException('Invalid signature')
+		}
+
+          return isValid
+	}
+}
+```

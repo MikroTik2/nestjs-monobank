@@ -22,6 +22,10 @@
 		"refunds/refund-payment",
 
 		"---Мерчант---",
-		"merchant/info"
+		"merchant/info",
+
+		"---Webhooks---",
+		"webhooks/pubkey",
+		"webhooks/verify"
 	]
 }
