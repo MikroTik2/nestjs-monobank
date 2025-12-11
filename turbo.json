@@ -8,5 +8,13 @@
 		"dev": {
 			"cache": false
 		}
+	},
+	"pipeline": {
+		"build": {
+			"env": [
+				"ORAMA_CLOUD_PRIVATE_API_KEY",
+				"ORAMA_INDEX_NAME"
+			]
+		}
 	}
 }
