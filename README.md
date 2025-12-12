@@ -11,8 +11,8 @@
 Якщо у вас виникли запитання або проблеми, не соромтеся звертатися до автора або створювати issues у репозиторії.
 
 - Контриб’ютори:
-  - Artur Dotsent [MikroTik2](https://artur-dotsent.vercel.app)
-  - Vlad Didyk [vladislav2251](https://vladislav-didyk.vercel.app)
+  - Artur Docenko [MikroTik2](https://docenko.vercel.app)
+  - Vlad Didyk [vladislav2251](https://didyk.vercel.app)
 
 ## Ліцензія
 
