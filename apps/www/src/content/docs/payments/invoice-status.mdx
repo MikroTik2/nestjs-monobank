@@ -16,7 +16,7 @@ import { Injectable } from '@nestjs/common';
 import { MonobankService } from 'nestjs-monobank';
 
 @Injectable()
-export className InvoiceService {
+export class InvoiceService {
   	constructor(private readonly monobankService: MonobankService) {}
 
   	async checkInvoiceStatus() {
