@@ -3,18 +3,16 @@
 	"tasks": {
 		"build": {
 			"dependsOn": ["^build"],
-			"outputs": ["dist/**", ".next/**"]
+			"outputs": ["dist/**", ".next/**"],
+			"env": [
+				"ORAMA_CLOUD_PRIVATE_API_KEY",
+				"ORAMA_INDEX_NAME",
+				"NEXT_PUBLIC_ORAMA_API_KEY",
+				"NEXT_PUBLIC_ORAMA_ENDPOINT"
+			]
 		},
 		"dev": {
 			"cache": false
-		}
-	},
-	"pipeline": {
-		"build": {
-			"env": [
-				"ORAMA_CLOUD_PRIVATE_API_KEY",
-				"ORAMA_INDEX_NAME"
-			]
 		}
 	}
 }
