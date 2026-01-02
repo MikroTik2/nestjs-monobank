@@ -20,13 +20,13 @@ export class PaymentService {
      constructor(private readonly monobankService: MonobankService) {}
 
      async createPayment() {
-          const paymentData: CardTokenRequest = {
+          const data: CreateCardTokenRequest = {
                invoiceId: 'p2_9ZgpZVsl3',
                cardToken: '67XZtXdR4NpKU3',
                cvc: '123'
           };
 
-          const payment = await this.monobankService.createWithCardToken(paymentData);
+          const payment = await this.monobankService.create(data);
           return payment.status;
      }
 }

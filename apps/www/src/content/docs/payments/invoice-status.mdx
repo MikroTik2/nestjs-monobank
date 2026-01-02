@@ -22,7 +22,7 @@ export class InvoiceService {
   	async checkInvoiceStatus() {
     		const invoiceId = 'khsf8723hsdf8923hf'; // унікальний ID рахунку
 
-    		const status = await this.monobankService.getInvoiceStatus(invoiceId);
+    		const status = await this.monobankService.status(invoiceId);
     		return status;
   	}
 }

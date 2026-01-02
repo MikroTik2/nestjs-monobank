@@ -1,4 +1,3 @@
-export * from "./interfaces";
-export * from "./monobank.constant";
+export * from "./common/interfaces";
 export * from "./monobank.module";
 export * from "./monobank.service";

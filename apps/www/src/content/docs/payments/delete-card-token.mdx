@@ -19,8 +19,8 @@ import { MonobankService } from 'nestjs-monobank';
 export class WalletService {
      constructor(private readonly monobankService: MonobankService) {}
 
-     async removeCardToken(cardToken: string) {
-          await this.monobankService.deleteCardToken(cardToken);
+     async removeCardToken(token: string) {
+          await this.monobankService.deleteByToken(token);
      }
 }
 ```

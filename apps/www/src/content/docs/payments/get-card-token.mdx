@@ -19,8 +19,8 @@ import { MonobankService } from 'nestjs-monobank';
 export class WalletService {
      constructor(private readonly monobankService: MonobankService) {}
 
-     async getCardTokens(walletId: string) {
-          const tokens = await this.monobankService.getCardTokens(walletId);
+     async getCardTokens(id: string) {
+          const tokens = await this.monobankService.getById(id);
           return tokens;
      }
 }

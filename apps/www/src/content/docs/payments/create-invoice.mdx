@@ -12,9 +12,9 @@ description: Кроки для створення рахунку
 Для створення рахунку вам необхідно підготувати об'єкт InvoiceCreateRequest, який містить усю необхідну інформацію про рахунок. Найважливіші поля включають суму рахунку.
 
 ```typescript
-import { type InvoiceCreateRequest } from 'nestjs-monobank';
+import { type CreateInvoiceRequest } from 'nestjs-monobank';
 
-const invoiceData: InvoiceCreateRequest = {
+const invoiceData: CreateInvoiceRequest = {
      amount: 1000,
      ccy: 980, // UAH
      merchantPaymInfo: {
@@ -43,14 +43,14 @@ const invoiceData: InvoiceCreateRequest = {
 
 ```typescript
 import { Injectable } from '@nestjs/common';
-import { type InvoiceCreateRequest, MonobankService } from 'nestjs-monobank';
+import { type CreateInvoiceRequest, MonobankService } from 'nestjs-monobank';
 
 @Injectable()
 export class InvoiceService {
   	constructor(private readonly monobankService: MonobankService) {}
 
  	async createInvoice() {
-          const invoiceData: InvoiceCreateRequest = {
+          const data: CreateInvoiceRequest = {
                amount: 1000,
                ccy: 980, // UAH
                merchantPaymInfo: {
@@ -72,7 +72,7 @@ export class InvoiceService {
                paymentType: "debit"
           };
 
-		const newInvoice = await this.monobankService.createInvoice(invoiceData);
+		const newInvoice = await this.monobankService.create(data);
 
 		return newInvoice;
   	}

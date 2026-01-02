@@ -26,19 +26,19 @@ const captureData: CaptureHoldRequest = {
 
 ```typescript
 import { Injectable } from '@nestjs/common';
-import { type CaptureHoldRequest, MonobankService } from 'nestjs-monobank';
+import { type CreateCaptureHoldRequest, MonobankService } from 'nestjs-monobank';
 
 @Injectable()
 export class PaymentService {
      constructor(private readonly monobankService: MonobankService) {}
 
      async finalizeHold() {
-          const captureData: CaptureHoldRequest = {
+          const data: CreateCaptureHoldRequest = {
                invoiceId: "2210012MPLYwJjVUzchj",
                amount: 4200
           };
 
-          const captureResult = await this.monobankService.captureHold(captureData);
+          const captureResult = await this.monobankService.capture(data);
           return captureResult;
      }
 }

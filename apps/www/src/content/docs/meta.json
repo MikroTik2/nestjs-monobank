@@ -18,14 +18,13 @@
 		"operations/statement",
 
 		"---Повернення---",
-		"refunds/cancel-payment",
-		"refunds/refund-payment",
+		"refunds/cancel-invoice",
 
 		"---Мерчант---",
-		"merchant/info",
+        "merchant/detail",
+        "merchant/pubkey",
 
-		"---Webhooks---",
-		"webhooks/pubkey",
+		"---Вебхуки---",
 		"webhooks/verify"
 	]
 }

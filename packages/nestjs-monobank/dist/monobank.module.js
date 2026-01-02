@@ -10,13 +10,20 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.MonobankModule = void 0;
 const axios_1 = require("@nestjs/axios");
 const common_1 = require("@nestjs/common");
-const interfaces_1 = require("./interfaces");
+const interfaces_1 = require("./common/interfaces");
 const monobank_service_1 = require("./monobank.service");
+const invoice_module_1 = require("./modules/invoice/invoice.module");
+const merchant_module_1 = require("./modules/merchant/merchant.module");
+const refund_module_1 = require("./modules/refund/refund.module");
+const statement_module_1 = require("./modules/statement/statement.module");
+const wallet_module_1 = require("./modules/wallet/wallet.module");
+const webhook_module_1 = require("./modules/webhook/webhook.module");
+const monobank_http_client_1 = require("./core/http/monobank.http-client");
 let MonobankModule = MonobankModule_1 = class MonobankModule {
     /**
      * Метод для реєстрації модуля з синхронними параметрами.
      * Цей метод використовується для конфігурації модуля з наперед заданими параметрами.
-     * @param {MonobankOptions} options - Налаштування для конфігурації Monobank API.
+     * @param {MonobankModuleOptions} options - Налаштування для конфігурації Monobank API.
      * @returns {DynamicModule} Повертає динамічний модуль з необхідними провайдерами та імпортами.
      *
      * @example
@@ -29,22 +36,34 @@ let MonobankModule = MonobankModule_1 = class MonobankModule {
     static forRoot(options) {
         return {
             module: MonobankModule_1,
-            imports: [axios_1.HttpModule],
+            imports: [
+                invoice_module_1.InvoiceModule,
+                merchant_module_1.MerchantModule,
+                refund_module_1.RefundModule,
+                statement_module_1.StatementModule,
+                wallet_module_1.WalletModule,
+                webhook_module_1.WebhookModule
+            ],
             providers: [
                 {
                     provide: interfaces_1.MonobankOptionsSymbol,
                     useValue: options,
                 },
+                {
+                    provide: monobank_http_client_1.MonobankHttpClient,
+                    useFactory: (cfg) => new monobank_http_client_1.MonobankHttpClient(cfg),
+                    inject: [axios_1.HttpModule]
+                },
                 monobank_service_1.MonobankService,
             ],
-            exports: [monobank_service_1.MonobankService],
+            exports: [monobank_service_1.MonobankService, monobank_http_client_1.MonobankHttpClient],
             global: true,
         };
     }
     /**
      * Метод для реєстрації модуля з асинхронною конфігурацією.
      * Цей метод використовується для конфігурації модуля з параметрами, які будуть передані через фабричну функцію.
-     * @param {MonobankAsyncOptions} options - Асинхронні параметри для конфігурації Monobank API.
+     * @param {MonobankModuleAsyncOptions} options - Асинхронні параметри для конфігурації Monobank API.
      * @returns {DynamicModule} Повертає динамічний модуль з необхідними провайдерами та імпортами.
      *
      * @example
@@ -61,17 +80,31 @@ let MonobankModule = MonobankModule_1 = class MonobankModule {
     static forRootAsync(options) {
         return {
             module: MonobankModule_1,
-            imports: [axios_1.HttpModule, ...(options.imports || [])],
+            imports: [
+                ...(options.imports || []),
+                invoice_module_1.InvoiceModule,
+                merchant_module_1.MerchantModule,
+                refund_module_1.RefundModule,
+                statement_module_1.StatementModule,
+                wallet_module_1.WalletModule,
+                webhook_module_1.WebhookModule,
+                invoice_module_1.InvoiceModule
+            ],
             providers: [
                 {
                     provide: interfaces_1.MonobankOptionsSymbol,
                     useFactory: options.useFactory,
-                    inject: options.inject || [],
+                    inject: options.inject || []
                 },
-                monobank_service_1.MonobankService,
+                {
+                    provide: monobank_http_client_1.MonobankHttpClient,
+                    useFactory: (cfg) => new monobank_http_client_1.MonobankHttpClient(cfg),
+                    inject: [interfaces_1.MonobankOptionsSymbol]
+                },
+                monobank_service_1.MonobankService
             ],
-            exports: [monobank_service_1.MonobankService],
-            global: true,
+            exports: [monobank_service_1.MonobankService, monobank_http_client_1.MonobankHttpClient],
+            global: true
         };
     }
 };

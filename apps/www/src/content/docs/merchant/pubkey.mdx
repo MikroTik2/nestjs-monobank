@@ -1,0 +1,41 @@
+---
+title: Відкритий ключ
+description: Відкритий ключ для верифікації підписів
+---
+
+У цьому розділі описано, як отримати відкритий ECDSA-ключ Monobank, який використовується для перевірки підписів у вебхуках та інших запитах, підписаних банком.
+
+<Steps />
+
+### Отримання відкритого ключа
+
+Метод pubkey виконує запит до Monobank Merchant API та повертає base64-закодований x.509 ECDSA відкритий ключ.
+
+🔐 Ключ можна кешувати. Робити запит на отримання ключа потрібно лише у випадку, якщо перевірка підпису з поточним ключем перестала працювати.
+
+```typescript
+import { Injectable } from '@nestjs/common';
+import { MonobankService } from 'nestjs-monobank';
+
+@Injectable()
+export class PubkeyService {
+     constructor(private readonly monobankService: MonobankService) {}
+
+     async getPubkey() {
+          const merchant = await this.monobankService.getPubkey();
+          return merchant;
+     }
+}
+```
+
+### Обробка відповіді від API
+
+API повертає обʼєкт з відкритим ключем у форматі Base64.
+
+```json
+{
+    "key": "LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0tLS0KTUZrd0V3WUhLb1pJemowQ0FRWUlLb1pJemowREFRY0RRZ0FFK0UxRnBVZzczYmhGdmp2SzlrMlhJeTZtQkU1MQpib2F0RU1qU053Z1l5ZW55blpZQWh3Z3dyTGhNY0FpT25SYzNXWGNyMGRrY2NvVnFXcVBhWVQ5T3hRPT0KLS0tLS1FTkQgUFVCTElDIEtFWS0tLS0tCg=="
+}
+```
+
+Отриманий ключ використовується виключно для перевірки цифрового підпису, який Monobank додає до вебхуків та інших підписаних запитів.
