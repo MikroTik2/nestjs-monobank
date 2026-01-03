@@ -1,6 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.RefundStatusEnum = void 0;
+/**
+ * Статус операції повернення коштів.
+ */
 var RefundStatusEnum;
 (function (RefundStatusEnum) {
     /**
