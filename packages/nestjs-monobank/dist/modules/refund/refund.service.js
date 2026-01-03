@@ -16,7 +16,7 @@ let RefundService = class RefundService {
     constructor(http) {
         this.http = http;
     }
-    async create(data) {
+    async cancel(data) {
         return this.http.post("/merchant/invoice/cancel", data);
     }
 };

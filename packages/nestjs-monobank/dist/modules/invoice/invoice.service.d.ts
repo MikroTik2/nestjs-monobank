@@ -5,7 +5,6 @@ export declare class InvoiceService {
     constructor(http: MonobankHttpClient);
     create(data: CreateInvoiceRequest): Promise<CreateInvoiceResponse>;
     status(id: string): Promise<InvoiceStatus>;
-    cancel(id: string): Promise<void>;
     capture(data: CreateCaptureHoldRequest): Promise<CreateCaptureHoldResponse>;
     checks(invoiceId: string): Promise<ChecksResponse>;
 }

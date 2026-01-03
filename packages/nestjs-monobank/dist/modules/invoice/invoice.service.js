@@ -22,9 +22,6 @@ let InvoiceService = class InvoiceService {
     async status(id) {
         return this.http.get(`/merchant/invoice/status?invoiceId=${id}`);
     }
-    async cancel(id) {
-        return this.http.post("/merchant/invoice/remove", { invoiceId: id });
-    }
     async capture(data) {
         return this.http.post("/merchant/invoice/finalize", data);
     }

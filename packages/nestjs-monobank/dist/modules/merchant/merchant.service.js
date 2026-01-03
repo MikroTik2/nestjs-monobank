@@ -16,7 +16,7 @@ let MerchantService = class MerchantService {
     constructor(http) {
         this.http = http;
     }
-    async getPubkey() {
+    async getMerchantPubkey() {
         return this.http.get("/merchant/pubkey");
     }
     async getMerchant() {

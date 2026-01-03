@@ -18,7 +18,7 @@ let WebhookService = class WebhookService {
         this.merchant = merchant;
     }
     async verifyWebhookSignature(rawBody, xSignBase64) {
-        const { key: publicKeyBase64 } = await this.merchant.getPubkey();
+        const { key: publicKeyBase64 } = await this.merchant.getMerchantPubkey();
         const sign = Buffer.from(xSignBase64, "base64");
         const publicKey = Buffer.from(publicKeyBase64, "base64");
         const verifier = crypto.createVerify("SHA256");

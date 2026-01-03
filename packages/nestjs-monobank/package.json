@@ -1,6 +1,6 @@
 {
     "name": "nestjs-monobank",
-    "version": "1.1.7",
+    "version": "1.1.8",
     "description": "A NestJS library for integrating with Monobank API",
     "author": {
         "name": "MikroTik_2",
@@ -35,8 +35,6 @@
         "lint": "eslint \"{src,apps,libs}/**/*.ts\" --fix"
     },
     "dependencies": {
-        "@nestjs/axios": "^4.0.0",
-        "axios": "^1.8.4",
         "rxjs": "^7.8.1",
         "undici": "^6.22.0"
     },

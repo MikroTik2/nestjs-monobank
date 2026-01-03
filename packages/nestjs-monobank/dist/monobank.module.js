@@ -8,7 +8,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var MonobankModule_1;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.MonobankModule = void 0;
-const axios_1 = require("@nestjs/axios");
 const common_1 = require("@nestjs/common");
 const interfaces_1 = require("./common/interfaces");
 const monobank_service_1 = require("./monobank.service");
@@ -52,7 +51,7 @@ let MonobankModule = MonobankModule_1 = class MonobankModule {
                 {
                     provide: monobank_http_client_1.MonobankHttpClient,
                     useFactory: (cfg) => new monobank_http_client_1.MonobankHttpClient(cfg),
-                    inject: [axios_1.HttpModule]
+                    inject: [interfaces_1.MonobankOptionsSymbol]
                 },
                 monobank_service_1.MonobankService,
             ],
