@@ -20,7 +20,7 @@ export class ReceiptService {
      constructor(private readonly monobankService: MonobankService) {}
 
      async getFiscalReceipts(invoiceId: string) {
-          const checks = await this.monobankService.checks(invoiceId);
+          const checks = await this.monobankService.invoice.checks(invoiceId);
           return checks;
      }
 }

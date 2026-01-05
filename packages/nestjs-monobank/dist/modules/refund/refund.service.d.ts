@@ -25,4 +25,21 @@ export declare class RefundService {
     * console.log(refund.status);
     */
     cancel(data: CreateRefundRequest): Promise<CreateRefundResponse>;
+    /**
+    * Видаляє (анулює) рахунок Monobank за його ідентифікатором.
+    *
+    * Метод використовується для:
+    * - повного видалення рахунку
+    * - припинення можливості оплати за інвойсом
+    *
+    * ⚠️ Зазвичай застосовується лише для інвойсів,
+    * які ще не були успішно оплачені.
+    *
+    * @param {string} invoiceId - Унікальний ідентифікатор рахунку.
+    * @returns {Promise<void>} Результат операції (без тіла відповіді).
+    *
+    * @example
+    * await this.monobankService.refund.remove("2210012MPLYwJjVUzchj");
+    */
+    remove(invoiceId: string): Promise<void>;
 }

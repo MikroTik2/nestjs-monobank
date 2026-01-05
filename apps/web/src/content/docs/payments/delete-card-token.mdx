@@ -20,7 +20,7 @@ export class WalletService {
      constructor(private readonly monobankService: MonobankService) {}
 
      async removeCardToken(token: string) {
-          await this.monobankService.deleteByToken(token);
+          await this.monobankService.wallet.deleteByToken(token);
      }
 }
 ```

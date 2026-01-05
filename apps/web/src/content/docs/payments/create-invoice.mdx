@@ -72,7 +72,7 @@ export class InvoiceService {
                paymentType: "debit"
           };
 
-		const newInvoice = await this.monobankService.create(data);
+		const newInvoice = await this.monobankService.invoice.create(data);
 
 		return newInvoice;
   	}

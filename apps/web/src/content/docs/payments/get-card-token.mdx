@@ -20,7 +20,7 @@ export class WalletService {
      constructor(private readonly monobankService: MonobankService) {}
 
      async getCardTokens(id: string) {
-          const tokens = await this.monobankService.getById(id);
+          const tokens = await this.monobankService.wallet.getById(id);
           return tokens;
      }
 }

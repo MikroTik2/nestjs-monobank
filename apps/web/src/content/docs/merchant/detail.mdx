@@ -20,7 +20,7 @@ export class MerchantService {
      constructor(private readonly monobankService: MonobankService) {}
 
      async getMerchant() {
-          const merchant = await this.monobankService.getMerchant();
+          const merchant = await this.monobankService.merchant.getMerchant();
           return merchant;
      }
 }

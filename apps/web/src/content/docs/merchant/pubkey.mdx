@@ -22,7 +22,7 @@ export class PubkeyService {
      constructor(private readonly monobankService: MonobankService) {}
 
      async getPubkey() {
-          const merchant = await this.monobankService.getPubkey();
+          const merchant = await this.monobankService.merchant.getPubkey();
           return merchant;
      }
 }

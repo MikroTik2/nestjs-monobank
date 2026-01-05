@@ -26,7 +26,7 @@ export class PaymentService {
                cvc: '123'
           };
 
-          const payment = await this.monobankService.create(data);
+          const payment = await this.monobankService.wallet.create(data);
           return payment.status;
      }
 }

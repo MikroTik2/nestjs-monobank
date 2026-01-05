@@ -63,7 +63,7 @@ export class WebhookService {
 	public async handleMonobank({ rawBody, signature, payload }: { rawBody: string; signature: string; payload: any }) {
 		this.logger.log(`Received Monobank webhook: ${payload.reference}`)
 
-		const isValid = await this.monobankService.verifyWebhookSignature(Buffer.from(rawBody), signature)
+		const isValid = await this.monobankService.webhook.verifyWebhookSignature(Buffer.from(rawBody), signature)
 		if (!isValid) {
 			this.logger.warn(`Invalid Monobank webhook signature for reference: ${payload.reference}`)
 			throw new BadRequestException('Invalid signature')

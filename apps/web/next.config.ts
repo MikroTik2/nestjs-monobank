@@ -12,7 +12,8 @@ const config: NextConfig = {
 	skipTrailingSlashRedirect: true,
 	experimental: {
 		optimizePackageImports: ['tailwindcss']
-	}
+	},
+	outputFileTracingRoot: __dirname,
 }
 
 export default withMDX(config)

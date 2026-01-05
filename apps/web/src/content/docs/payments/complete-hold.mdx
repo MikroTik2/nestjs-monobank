@@ -38,7 +38,7 @@ export class PaymentService {
                amount: 4200
           };
 
-          const captureResult = await this.monobankService.capture(data);
+          const captureResult = await this.monobankService.invoice.capture(data);
           return captureResult;
      }
 }

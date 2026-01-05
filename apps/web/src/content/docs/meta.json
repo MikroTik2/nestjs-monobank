@@ -18,7 +18,8 @@
 		"operations/statement",
 
 		"---Повернення---",
-		"refunds/cancel-invoice",
+        "refunds/cancel-invoice",
+        "refunds/remove-invoice",
 
 		"---Мерчант---",
         "merchant/detail",
