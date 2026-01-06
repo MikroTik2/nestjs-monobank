@@ -1,28 +1,68 @@
 {
-      "name": "nestjs-monobank",
-      "version": "0.0.2",
-      "private": true,
-      "license": "MIT",
-      "workspaces": [
-            "apps/*",
-            "packages/*"
-      ],
-      "scripts": {
-            "dev": "turbo run dev",
-            "dev:www": "turbo run dev --filter=www",
-            "build": "turbo run build",
-            "build:www": "turbo run build --filter=www",
-            "build:packages": "turbo run build --filter=packages/*",
-            "update": "npm update",
-            "upgrade:all": "npm i -g npm-check-updates && ncu -u && npm install",
-            "lint": "turbo run lint"
-      },
-      "devDependencies": {
-            "turbo": "^2.5.0"
-      },
-      "packageManager": "npm@10.8.2",
-      "dependencies": {
-            "@oramacloud/client": "^2.1.4",
-            "next": "^15.5.7"
-      }
+    "name": "nestjs-monobank",
+    "version": "1.2.0",
+    "description": "A NestJS library for integrating with Monobank API",
+    "author": {
+        "name": "MikroTik_2",
+        "url": "https://docenko.vercel.app"
+    },
+    "contributors": [
+        {
+            "name": "Artur Docenko",
+            "email": "dotsenk20034@gmail.com"
+        }
+    ],
+    "keywords": [
+        "nest",
+        "nestjs",
+        "nestjs-module",
+        "monobank",
+        "invoice",
+        "payment"
+    ],
+    "private": false,
+    "license": "MIT",
+    "homepage": "https://nestjs-monobank.vercel.app",
+    "repository": "git@github.com:MikroTik2/nestjs-monobank.git",
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "scripts": {
+        "build": "tsc -p tsconfig.json",
+        "precommit": "lint-staged",
+        "prepublish:npm": "npm run build",
+        "publish:npm": "npm publish --access public",
+        "format": "prettier --write \"src/**/*.ts\"",
+        "lint": "eslint \"{src,apps,libs}/**/*.ts\" --fix"
+    },
+    "dependencies": {
+        "rxjs": "^7.8.1",
+        "undici": "^6.22.0"
+    },
+    "devDependencies": {
+        "@eslint/eslintrc": "^3.2.0",
+        "@eslint/js": "^9.18.0",
+        "@nestjs/cli": "^11.0.0",
+        "@nestjs/common": "^11.0.17",
+        "@nestjs/core": "^11.0.17",
+        "@nestjs/schematics": "^11.0.0",
+        "@nestjs/testing": "^11.0.1",
+        "@types/express": "^5.0.0",
+        "@types/jest": "^29.5.14",
+        "@types/node": "^22.10.7",
+        "@types/supertest": "^6.0.2",
+        "eslint": "^9.18.0",
+        "eslint-config-prettier": "^10.1.2",
+        "eslint-plugin-prettier": "^5.2.2",
+        "globals": "^16.0.0",
+        "jest": "^29.7.0",
+        "prettier": "^3.4.2",
+        "source-map-support": "^0.5.21",
+        "supertest": "^7.0.0",
+        "ts-jest": "^29.2.5",
+        "ts-loader": "^9.5.2",
+        "ts-node": "^10.9.2",
+        "tsconfig-paths": "^4.2.0",
+        "typescript": "^5.7.3",
+        "typescript-eslint": "^8.20.0"
+    }
 }
