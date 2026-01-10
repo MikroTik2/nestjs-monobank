@@ -12,7 +12,6 @@
 
 - Контриб’ютори:
     - Artur Docenko [MikroTik2](https://docenko.vercel.app)
-    - Vlad Didyk [vladislav2251](https://didyk.vercel.app)
 
 ## Ліцензія
 
