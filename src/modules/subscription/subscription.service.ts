@@ -24,7 +24,7 @@ export class SubscriptionService {
     }
 
     public async getHistory(query: HistoryRequest): Promise<HistoryResponse> {
-        return this.http.get('merchant/subscription/payments', { params: query })
+        return this.http.get('/merchant/subscription/payments', { params: query })
     }
 
     public async getClientSubscriptions(query: ClientSubscriptionsRequest): Promise<ClientSubscriptionResponse> {

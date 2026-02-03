@@ -20,7 +20,7 @@ export class MonobankHttpClient {
 		data?: any
 		params?: any
 	}): Promise<T> {
-	     const url = this.buildUrl(options.params)
+	     const url = this.buildUrl(options.url, options.params)
 
 		const response = await request(url, {
 			method: options.method,
