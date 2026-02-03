@@ -23,7 +23,7 @@ let SubscriptionService = class SubscriptionService {
         return this.http.get(`/merchant/subscription/status?subscriptionId=${subscriptionId}`);
     }
     async getHistory(query) {
-        return this.http.get('merchant/subscription/payments', { params: query });
+        return this.http.get('/merchant/subscription/payments', { params: query });
     }
     async getClientSubscriptions(query) {
         return this.http.get(`/merchant/subscription/list`, { params: query });

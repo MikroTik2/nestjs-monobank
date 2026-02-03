@@ -23,7 +23,7 @@ let MonobankHttpClient = class MonobankHttpClient {
         this.config = config;
     }
     async request(options) {
-        const url = this.buildUrl(options.params);
+        const url = this.buildUrl(options.url, options.params);
         const response = await (0, undici_1.request)(url, {
             method: options.method,
             headersTimeout: 15000,
