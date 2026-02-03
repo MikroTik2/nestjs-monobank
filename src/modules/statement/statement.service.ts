@@ -15,10 +15,10 @@ export class StatementService {
      * @param {string} [to] - Кінцевий час періоду в форматі Unix time (секунди). Якщо не вказано, використовується поточний час.
      * @returns {Promise<StatementResponse>} Список операцій за період.
      * @example
-     * const statement = await this.monobankService.items('0', '1680000000', '1681000000');
+     * const statement = await this.monobankService.statement.getStatementByPeriod('0', '1680000000', '1681000000');
      * console.log(statement.items);
      */
-     public async statement(account: string, from: string, to?: string): Promise<StatementResponse> {
+     public async getStatementByPeriod(account: string, from: string, to?: string): Promise<StatementResponse> {
           const url = to ? `/merchant/statement/${account}/${from}/${to}` : `/merchant/statement/${account}/${from}`;
           return this.http.get("get", url);
      }

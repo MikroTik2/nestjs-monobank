@@ -56,27 +56,11 @@ export class InvoiceService {
 	 * @returns {Promise<InvoiceStatus>} Поточний статус рахунку.
 	 * @example
 	 * const invoiceId = "khsf8723hsdf8923hf";
-	 * const status = await this.monobankService.invouce.status(invoiceId);
+	 * const status = await this.monobankService.invoice.getStatus(invoiceId);
 	 * console.log(status);
 	 */
-	public async status(invoiceId: string): Promise<InvoiceStatus> {
+	public async getStatus(invoiceId: string): Promise<InvoiceStatus> {
 		return this.http.get(`/merchant/invoice/status?invoiceId=${invoiceId}`)
-	}
-
-	 /**
-	 * Завершує утримання коштів за рахунком.
-	 * @param {CreateCaptureHoldRequest} data - Дані для завершення утримання коштів.
-	 * @returns {Promise<CreateCaptureHoldResponse>} Статус завершення утримання.
-	 * @example
-	 * const data: CreateCaptureHoldRequest = {
-	 *    invoiceId: "2210012MPLYwJjVUzchj",
-	 *    amount: 4200
-	 * };
-	 * const capture = await this.monobankService.invoice.capture(data);
-	 * console.log(capture.status);
-	 */
-	public async capture(data: CreateCaptureHoldRequest): Promise<CreateCaptureHoldResponse> {
-		return this.http.post('/merchant/invoice/finalize', data)
 	}
 
 	 /**
@@ -87,7 +71,23 @@ export class InvoiceService {
 	 * const checks = await this.monobankService.getFiscalReceipts(invoiceId);
 	 * console.log(checks);
 	 */
-	public async checks(invoiceId: string): Promise<ChecksResponse> {
+	public async getFiscalReceipts(invoiceId: string): Promise<ChecksResponse> {
 		return this.http.get(`/merchant/invoice/fiscal-checks?invoiceId=${invoiceId}`)
 	}
+
+    /**
+     * Завершує утримання коштів за рахунком.
+     * @param {CreateCaptureHoldRequest} data - Дані для завершення утримання коштів.
+     * @returns {Promise<CreateCaptureHoldResponse>} Статус завершення утримання.
+     * @example
+     * const data: CreateCaptureHoldRequest = {
+     *    invoiceId: "2210012MPLYwJjVUzchj",
+     *    amount: 4200
+     * };
+     * const capture = await this.monobankService.invoice.capture(data);
+     * console.log(capture.status);
+     */
+    public async capture(data: CreateCaptureHoldRequest): Promise<CreateCaptureHoldResponse> {
+        return this.http.post('/merchant/invoice/finalize', data)
+    }
 }

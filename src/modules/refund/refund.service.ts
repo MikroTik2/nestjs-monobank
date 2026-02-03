@@ -48,9 +48,9 @@ export class RefundService {
 	 * @returns {Promise<void>} Результат операції (без тіла відповіді).
 	 *
 	 * @example
-	 * await this.monobankService.refund.remove("2210012MPLYwJjVUzchj");
+	 * await this.monobankService.refund.removeById("2210012MPLYwJjVUzchj");
 	 */
-	 public async remove(invoiceId: string): Promise<void> {
+	 public async removeById(invoiceId: string): Promise<void> {
 		 return this.http.post("/merchant/invoice/remove", invoiceId)
 	 }
 }

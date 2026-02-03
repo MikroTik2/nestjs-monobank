@@ -4,7 +4,8 @@ import { MerchantService } from './modules/merchant/merchant.service'
 import { RefundService } from './modules/refund/refund.service'
 import { StatementService } from './modules/statement/statement.service'
 import { WalletService } from './modules/wallet/wallet.service'
-import {WebhookService} from "./modules/webhook/webhook.service";
+import { SubscriptionService } from "./modules/subscription/subscription.service";
+import { WebhookService } from "./modules/webhook/webhook.service";
 
 @Injectable()
 export class MonobankService {
@@ -14,6 +15,7 @@ export class MonobankService {
 		public refunds: RefundService,
 		public statements: StatementService,
 		public wallets: WalletService,
+        public subscriptions: SubscriptionService,
         public webhook: WebhookService
 	) {}
 }
