@@ -13,6 +13,7 @@ import { StatementModule } from './modules/statement/statement.module'
 import { WalletModule } from './modules/wallet/wallet.module'
 import { WebhookModule } from './modules/webhook/webhook.module'
 import { MonobankHttpClient } from './core/http/monobank.http-client'
+import {SubscriptionModule} from "./modules/subscription/subscription.module";
 
 @Global()
 @Module({})
@@ -39,6 +40,7 @@ export class MonobankModule {
 				RefundModule,
 				StatementModule,
 				WalletModule,
+                SubscriptionModule,
 				WebhookModule
 			],
             providers: [
@@ -87,6 +89,7 @@ export class MonobankModule {
 				StatementModule,
 				WalletModule,
 				WebhookModule,
+                SubscriptionModule,
 				InvoiceModule
 			],
 			providers: [

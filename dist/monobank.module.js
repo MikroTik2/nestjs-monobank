@@ -18,6 +18,7 @@ const statement_module_1 = require("./modules/statement/statement.module");
 const wallet_module_1 = require("./modules/wallet/wallet.module");
 const webhook_module_1 = require("./modules/webhook/webhook.module");
 const monobank_http_client_1 = require("./core/http/monobank.http-client");
+const subscription_module_1 = require("./modules/subscription/subscription.module");
 let MonobankModule = MonobankModule_1 = class MonobankModule {
     /**
      * Метод для реєстрації модуля з синхронними параметрами.
@@ -41,6 +42,7 @@ let MonobankModule = MonobankModule_1 = class MonobankModule {
                 refund_module_1.RefundModule,
                 statement_module_1.StatementModule,
                 wallet_module_1.WalletModule,
+                subscription_module_1.SubscriptionModule,
                 webhook_module_1.WebhookModule
             ],
             providers: [
@@ -87,6 +89,7 @@ let MonobankModule = MonobankModule_1 = class MonobankModule {
                 statement_module_1.StatementModule,
                 wallet_module_1.WalletModule,
                 webhook_module_1.WebhookModule,
+                subscription_module_1.SubscriptionModule,
                 invoice_module_1.InvoiceModule
             ],
             providers: [
