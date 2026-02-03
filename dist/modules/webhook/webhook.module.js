@@ -9,11 +9,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.WebhookModule = void 0;
 const common_1 = require("@nestjs/common");
 const webhook_service_1 = require("./webhook.service");
+const merchant_module_1 = require("../merchant/merchant.module");
 let WebhookModule = class WebhookModule {
 };
 exports.WebhookModule = WebhookModule;
 exports.WebhookModule = WebhookModule = __decorate([
     (0, common_1.Module)({
+        imports: [
+            merchant_module_1.MerchantModule
+        ],
         providers: [webhook_service_1.WebhookService],
         exports: [webhook_service_1.WebhookService]
     })
