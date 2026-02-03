@@ -41,23 +41,10 @@ export declare class InvoiceService {
      * @returns {Promise<InvoiceStatus>} Поточний статус рахунку.
      * @example
      * const invoiceId = "khsf8723hsdf8923hf";
-     * const status = await this.monobankService.invouce.status(invoiceId);
+     * const status = await this.monobankService.invoice.getStatus(invoiceId);
      * console.log(status);
      */
-    status(invoiceId: string): Promise<InvoiceStatus>;
-    /**
-    * Завершує утримання коштів за рахунком.
-    * @param {CreateCaptureHoldRequest} data - Дані для завершення утримання коштів.
-    * @returns {Promise<CreateCaptureHoldResponse>} Статус завершення утримання.
-    * @example
-    * const data: CreateCaptureHoldRequest = {
-    *    invoiceId: "2210012MPLYwJjVUzchj",
-    *    amount: 4200
-    * };
-    * const capture = await this.monobankService.invoice.capture(data);
-    * console.log(capture.status);
-    */
-    capture(data: CreateCaptureHoldRequest): Promise<CreateCaptureHoldResponse>;
+    getStatus(invoiceId: string): Promise<InvoiceStatus>;
     /**
     * Отримує фіскальні чеки по рахунку.
     * @param {string} invoiceId - Унікальний ідентифікатор рахунку.
@@ -66,5 +53,18 @@ export declare class InvoiceService {
     * const checks = await this.monobankService.getFiscalReceipts(invoiceId);
     * console.log(checks);
     */
-    checks(invoiceId: string): Promise<ChecksResponse>;
+    getFiscalReceipts(invoiceId: string): Promise<ChecksResponse>;
+    /**
+     * Завершує утримання коштів за рахунком.
+     * @param {CreateCaptureHoldRequest} data - Дані для завершення утримання коштів.
+     * @returns {Promise<CreateCaptureHoldResponse>} Статус завершення утримання.
+     * @example
+     * const data: CreateCaptureHoldRequest = {
+     *    invoiceId: "2210012MPLYwJjVUzchj",
+     *    amount: 4200
+     * };
+     * const capture = await this.monobankService.invoice.capture(data);
+     * console.log(capture.status);
+     */
+    capture(data: CreateCaptureHoldRequest): Promise<CreateCaptureHoldResponse>;
 }
