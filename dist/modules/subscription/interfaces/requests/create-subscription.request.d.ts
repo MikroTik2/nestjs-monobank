@@ -2,7 +2,7 @@ export interface CreateSubscriptionRequest {
     amount: number;
     ccy?: number;
     redirectUrl?: string;
-    webhookUrls: {
+    webhookUrls?: {
         chargeUrl?: string;
         statusUrl?: string;
     };
