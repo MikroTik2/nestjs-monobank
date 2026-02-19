@@ -1,4 +1,4 @@
-import type { PaginationResponse } from "./pagination.response";
+import type { PaginatedResponse } from "../../../../common/interfaces";
 import type { WalletStatusEnum } from "../../enums";
 export interface PaymentResponse {
     amount: number;
@@ -6,7 +6,4 @@ export interface PaymentResponse {
     chargedAt: string;
     ccy: string;
 }
-export interface HistoryResponse {
-    payments: PaymentResponse[];
-    pagination: PaginationResponse;
-}
+export type HistoryResponse = PaginatedResponse<PaymentResponse>;

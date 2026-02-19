@@ -1,3 +1,5 @@
 import { SubscriptionResponse } from "./subscription.response";
-export interface CreateSubscriptionResponse extends SubscriptionResponse {
-}
+/**
+ * Відповідь на створення підписки
+ */
+export type CreateSubscriptionResponse = SubscriptionResponse;

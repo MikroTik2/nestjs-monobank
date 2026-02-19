@@ -17,12 +17,14 @@ const statement_service_1 = require("./modules/statement/statement.service");
 const wallet_service_1 = require("./modules/wallet/wallet.service");
 const subscription_service_1 = require("./modules/subscription/subscription.service");
 const webhook_service_1 = require("./modules/webhook/webhook.service");
+const qr_service_1 = require("./modules/qr/qr.service");
 let MonobankService = class MonobankService {
-    constructor(invoices, merchants, statements, wallets, subscriptions, webhook) {
+    constructor(invoices, merchants, statements, wallets, qr, subscriptions, webhook) {
         this.invoices = invoices;
         this.merchants = merchants;
         this.statements = statements;
         this.wallets = wallets;
+        this.qr = qr;
         this.subscriptions = subscriptions;
         this.webhook = webhook;
     }
@@ -34,6 +36,7 @@ exports.MonobankService = MonobankService = __decorate([
         merchant_service_1.MerchantService,
         statement_service_1.StatementService,
         wallet_service_1.WalletService,
+        qr_service_1.QrService,
         subscription_service_1.SubscriptionService,
         webhook_service_1.WebhookService])
 ], MonobankService);

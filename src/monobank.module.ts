@@ -13,6 +13,7 @@ import { WalletModule } from './modules/wallet/wallet.module'
 import { WebhookModule } from './modules/webhook/webhook.module'
 import { MonobankHttpClient } from './core/http/monobank.http-client'
 import {SubscriptionModule} from "./modules/subscription/subscription.module";
+import { QrModule } from "./modules/qr/qr.module";
 
 @Global()
 @Module({})
@@ -38,6 +39,7 @@ export class MonobankModule {
 				MerchantModule,
 				StatementModule,
 				WalletModule,
+                QrModule,
                 SubscriptionModule,
 				WebhookModule
 			],
@@ -86,6 +88,7 @@ export class MonobankModule {
 				StatementModule,
 				WalletModule,
 				WebhookModule,
+                QrModule,
                 SubscriptionModule,
 				InvoiceModule
 			],

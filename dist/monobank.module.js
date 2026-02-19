@@ -18,6 +18,7 @@ const wallet_module_1 = require("./modules/wallet/wallet.module");
 const webhook_module_1 = require("./modules/webhook/webhook.module");
 const monobank_http_client_1 = require("./core/http/monobank.http-client");
 const subscription_module_1 = require("./modules/subscription/subscription.module");
+const qr_module_1 = require("./modules/qr/qr.module");
 let MonobankModule = MonobankModule_1 = class MonobankModule {
     /**
      * Метод для реєстрації модуля з синхронними параметрами.
@@ -40,6 +41,7 @@ let MonobankModule = MonobankModule_1 = class MonobankModule {
                 merchant_module_1.MerchantModule,
                 statement_module_1.StatementModule,
                 wallet_module_1.WalletModule,
+                qr_module_1.QrModule,
                 subscription_module_1.SubscriptionModule,
                 webhook_module_1.WebhookModule
             ],
@@ -86,6 +88,7 @@ let MonobankModule = MonobankModule_1 = class MonobankModule {
                 statement_module_1.StatementModule,
                 wallet_module_1.WalletModule,
                 webhook_module_1.WebhookModule,
+                qr_module_1.QrModule,
                 subscription_module_1.SubscriptionModule,
                 invoice_module_1.InvoiceModule
             ],
