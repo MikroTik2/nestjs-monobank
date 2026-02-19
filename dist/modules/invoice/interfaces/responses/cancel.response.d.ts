@@ -1,19 +1,16 @@
-import { RefundStatusEnum } from "../../enums";
-
+import type { CancelStatusEnum } from "../../enums";
 /**
  * Відповідь на запит про скасування інвойсу.
  */
-export interface Refund {
+export interface Cancel {
     /**
      * Статус операції скасування.
      */
-    status: RefundStatusEnum;
-
+    status: CancelStatusEnum;
     /**
      * Дата створення операції скасування.
      */
     createdDate: string;
-
     /**
      * Дата останньої модифікації операції.
      */

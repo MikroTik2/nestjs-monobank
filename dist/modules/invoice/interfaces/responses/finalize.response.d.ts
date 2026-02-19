@@ -1,7 +1,7 @@
 /**
  * Результат підтвердження холду.
  */
-export interface CaptureHold {
+export interface FinalizeResponse {
     /**
      * Статус операції: наприклад, "success", "failure" або null, якщо статус невідомий.
      */

@@ -1,7 +1,7 @@
-import type { CaptureHold } from "./capture-hold.response";
+import type { FinalizeResponse } from "./finalize.response";
 
 /**
  * Відповідь API при підтвердженні холду.
  * Наслідує базову структуру CaptureHold.
  */
-export interface CreateCaptureHoldResponse extends CaptureHold {}
+export interface CreateFinalizeResponse extends FinalizeResponse {}

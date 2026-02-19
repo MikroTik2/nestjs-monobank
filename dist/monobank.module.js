@@ -13,7 +13,6 @@ const interfaces_1 = require("./common/interfaces");
 const monobank_service_1 = require("./monobank.service");
 const invoice_module_1 = require("./modules/invoice/invoice.module");
 const merchant_module_1 = require("./modules/merchant/merchant.module");
-const refund_module_1 = require("./modules/refund/refund.module");
 const statement_module_1 = require("./modules/statement/statement.module");
 const wallet_module_1 = require("./modules/wallet/wallet.module");
 const webhook_module_1 = require("./modules/webhook/webhook.module");
@@ -39,7 +38,6 @@ let MonobankModule = MonobankModule_1 = class MonobankModule {
             imports: [
                 invoice_module_1.InvoiceModule,
                 merchant_module_1.MerchantModule,
-                refund_module_1.RefundModule,
                 statement_module_1.StatementModule,
                 wallet_module_1.WalletModule,
                 subscription_module_1.SubscriptionModule,
@@ -85,7 +83,6 @@ let MonobankModule = MonobankModule_1 = class MonobankModule {
                 ...(options.imports || []),
                 invoice_module_1.InvoiceModule,
                 merchant_module_1.MerchantModule,
-                refund_module_1.RefundModule,
                 statement_module_1.StatementModule,
                 wallet_module_1.WalletModule,
                 webhook_module_1.WebhookModule,

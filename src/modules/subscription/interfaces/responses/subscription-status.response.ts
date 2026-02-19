@@ -1,25 +1,40 @@
-import type { SubscriptionStatusEnum, WalletStatusEnum } from "../../enums";
+import type { SubscriptionSummary, WalletData } from "../../../../common/interfaces";
+import type { SubscriptionStatusEnum } from "../../enums";
 
+/**
+ * Статус підписки клієнта
+ */
 export interface SubscriptionStatusResponse {
-    subscriptionId: string
-    status: SubscriptionStatusEnum
-    startDate: string // ISO 8601 date-time
-    endDate?: string // ISO 8601 date-time
-    amount: number // int64
-    ccy: number // ISO 4217 currency code
-    interval: string
-    nextChargeDate?: string // ISO 8601 date-time
-    cancellationDesc?: string
+  /** Ідентифікатор підписки */
+  subscriptionId: string;
 
-    summary: {
-        totalPaid: number
-        totalFailed: number
-    }
+  /** Статус підписки */
+  status: SubscriptionStatusEnum;
 
-    walletData: {
-        cardToken: string
-        walletId: string
-        status: WalletStatusEnum
-        failureDescription?: string
-    }
+  /** Дата початку підписки (ISO 8601) */
+  startDate: string;
+
+  /** Дата завершення підписки (ISO 8601), якщо підписка закінчена або запланована */
+  endDate?: string;
+
+  /** Сума списання у мінімальних одиницях валюти */
+  amount: number;
+
+  /** Числовий код валюти ISO 4217 */
+  ccy: number;
+
+  /** Періодичність списання (наприклад, "1m", "2w") */
+  interval: string;
+
+  /** Дата наступного списання (ISO 8601), якщо відома */
+  nextChargeDate?: string;
+
+  /** Причина скасування, якщо підписка була скасована */
+  cancellationDesc?: string;
+
+  /** Статистика платежів по підписці */
+  summary: SubscriptionSummary;
+
+  /** Дані гаманця, через який проходять списання */
+  walletData: WalletData;
 }

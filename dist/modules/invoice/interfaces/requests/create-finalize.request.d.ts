@@ -1,20 +1,17 @@
 import type { BasketItem } from "../../../../common/interfaces";
-
 /**
  * Запит на підтвердження (списання) коштів із раніше створеного холду.
  */
-export interface CreateCaptureHoldRequest {
+export interface CreateFinalizeRequest {
     /**
      * Ідентифікатор рахунку (invoice), який потрібно підтвердити.
      */
     invoiceId: string;
-
     /**
      * (Необов'язково) Сума для списання в мінімальних одиницях.
      * Якщо не вказано — буде списано повну суму холду.
      */
     amount?: number;
-
     /**
      * (Необов'язково) Список товарів для фіскалізації або звітності.
      */

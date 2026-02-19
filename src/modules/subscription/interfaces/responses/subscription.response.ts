@@ -1,4 +1,11 @@
+/**
+ * Відповідь API при створенні або отриманні підписки
+ */
 export interface SubscriptionResponse {
-    subscriptionId: string
-    pageUrl: string
-}
+    /** Ідентифікатор підписки */
+    subscriptionId: string;
+  
+    /** URL сторінки підписки для користувача */
+    pageUrl: string;
+  }
+  

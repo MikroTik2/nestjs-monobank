@@ -15,4 +15,6 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(require("./create-invoice.request"), exports);
-__exportStar(require("./create-capture.request"), exports);
+__exportStar(require("./create-finalize.request"), exports);
+__exportStar(require("./create-cancel.request"), exports);
+__exportStar(require("./create-charge.request"), exports);

@@ -15,8 +15,11 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(require("./create-invoice.response"), exports);
-__exportStar(require("./create-capture-hold.response"), exports);
-__exportStar(require("./capture-hold.response"), exports);
+__exportStar(require("./create-finalize.response"), exports);
+__exportStar(require("./create-cancel.response"), exports);
+__exportStar(require("./cancel.response"), exports);
+__exportStar(require("./finalize.response"), exports);
 __exportStar(require("./invoice-status.response"), exports);
 __exportStar(require("./invoice.response"), exports);
-__exportStar(require("./checks.response"), exports);
+__exportStar(require("./fiscal-checks.response"), exports);
+__exportStar(require("./receipt.response"), exports);

@@ -1,3 +1,4 @@
+import { InvoiceStatusEnum } from '../../modules/invoice/enums';
 import { Discount } from '../enums/discount.enum'
 
 /**
@@ -149,6 +150,17 @@ export interface WalletData {
 }
 
 /**
+ * Статистика платежів по підписці
+ */
+export interface SubscriptionSummary {
+    /** Загальна сума успішно сплачених платежів */
+    totalPaid: number;
+  
+    /** Загальна сума невдалих платежів */
+    totalFailed: number;
+  }
+
+/**
  * Інформація про виплату чайових співробітнику.
  */
 export interface TipsInfo {
@@ -163,10 +175,32 @@ export interface TipsInfo {
 }
 
 /**
+ * Дані для пагінації
+ */
+export interface Pagination {
+    /** Загальна кількість елементів */
+    totalItems: number;
+  
+    /** Кількість елементів на сторінці */
+    itemsPerPage: number;
+  
+    /** Поточна сторінка (починаючи з 1) */
+    currentPage: number;
+  
+    /** Загальна кількість сторінок */
+    totalPages: number;
+}
+
+export interface PaginatedResponse<T> {
+    items: T[];
+    pagination: Pagination;
+}
+  
+/**
  * Інформація про оплату, включаючи дані щодо токенізації картки та чайових.
  */
 export interface InvoiceCancelItem {
-    status: "processing" | "success" | "failure" | "reversed";
+    status: Exclude<InvoiceStatusEnum, InvoiceStatusEnum.CREATED>;
     walletData: WalletData;
     tipsInfo?: TipsInfo;
 }

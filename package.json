@@ -35,6 +35,7 @@
         "lint": "eslint \"{src,apps,libs}/**/*.ts\" --fix"
     },
     "dependencies": {
+        "axios": "^1.13.5",
         "rxjs": "^7.8.1",
         "undici": "^6.22.0"
     },

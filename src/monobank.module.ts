@@ -8,7 +8,6 @@ import {
 import { MonobankService } from "./monobank.service";
 import { InvoiceModule } from './modules/invoice/invoice.module'
 import { MerchantModule } from './modules/merchant/merchant.module'
-import { RefundModule } from './modules/refund/refund.module'
 import { StatementModule } from './modules/statement/statement.module'
 import { WalletModule } from './modules/wallet/wallet.module'
 import { WebhookModule } from './modules/webhook/webhook.module'
@@ -37,7 +36,6 @@ export class MonobankModule {
             imports: [
 				InvoiceModule,
 				MerchantModule,
-				RefundModule,
 				StatementModule,
 				WalletModule,
                 SubscriptionModule,
@@ -85,7 +83,6 @@ export class MonobankModule {
 				...(options.imports || []),
 				InvoiceModule,
 				MerchantModule,
-				RefundModule,
 				StatementModule,
 				WalletModule,
 				WebhookModule,
