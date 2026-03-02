@@ -1,69 +1,29 @@
 {
-    "name": "nestjs-monobank",
-    "version": "1.2.6",
-    "description": "A NestJS library for integrating with Monobank API",
-    "author": {
-        "name": "MikroTik_2",
-        "url": "https://docenko.vercel.app"
-    },
-    "contributors": [
-        {
-            "name": "Artur Docenko",
-            "email": "dotsenk20034@gmail.com"
-        }
-    ],
-    "keywords": [
-        "nest",
-        "nestjs",
-        "nestjs-module",
-        "monobank",
-        "invoice",
-        "payment"
-    ],
-    "private": false,
-    "license": "MIT",
-    "homepage": "https://nestjs-monobank.vercel.app",
-    "repository": "git@github.com:MikroTik2/nestjs-monobank.git",
-    "main": "./dist/index.js",
-    "types": "./dist/index.d.ts",
-    "scripts": {
-        "build": "tsc -p tsconfig.json",
-        "precommit": "lint-staged",
-        "prepublish:npm": "npm run build",
-        "publish:npm": "npm publish --access public",
-        "format": "prettier --write \"src/**/*.ts\"",
-        "lint": "eslint \"{src,apps,libs}/**/*.ts\" --fix"
-    },
-    "dependencies": {
-        "axios": "^1.13.5",
-        "rxjs": "^7.8.1",
-        "undici": "^6.22.0"
-    },
-    "devDependencies": {
-        "@eslint/eslintrc": "^3.2.0",
-        "@eslint/js": "^9.18.0",
-        "@nestjs/cli": "^11.0.0",
-        "@nestjs/common": "^11.0.17",
-        "@nestjs/core": "^11.0.17",
-        "@nestjs/schematics": "^11.0.0",
-        "@nestjs/testing": "^11.0.1",
-        "@types/express": "^5.0.0",
-        "@types/jest": "^29.5.14",
-        "@types/node": "^22.10.7",
-        "@types/supertest": "^6.0.2",
-        "eslint": "^9.18.0",
-        "eslint-config-prettier": "^10.1.2",
-        "eslint-plugin-prettier": "^5.2.2",
-        "globals": "^16.0.0",
-        "jest": "^29.7.0",
-        "prettier": "^3.4.2",
-        "source-map-support": "^0.5.21",
-        "supertest": "^7.0.0",
-        "ts-jest": "^29.2.5",
-        "ts-loader": "^9.5.2",
-        "ts-node": "^10.9.2",
-        "tsconfig-paths": "^4.2.0",
-        "typescript": "^5.7.3",
-        "typescript-eslint": "^8.20.0"
-    }
+	"name": "nestjs-monobank",
+	"version": "0.0.6",
+	"private": true,
+	"license": "MIT",
+	"author": {
+		"name": "MikroTik_2",
+		"url": "https://docenko.vercel.app"
+	},
+	"workspaces": [
+		"apps/*",
+		"packages/*"
+	],
+	"scripts": {
+		"dev": "turbo run dev",
+		"build": "turbo run build",
+		"dev:web": "turbo run dev --filter=web",
+		"build:web": "turbo run build --filter=web",
+		"build:packages": "turbo run build --filter=nestjs-monobank",
+		"publish:packages": "npm run build:packages && lerna publish",
+		"update": "npm update",
+		"upgrade:all": "npm i -g npm-check-updates && ncu -u && npm install"
+	},
+	"devDependencies": {
+		"baseline-browser-mapping": "^2.10.0",
+		"turbo": "^2.3.1"
+	},
+	"packageManager": "pnpm@10.30.2+sha512.36cdc707e7b7940a988c9c1ecf88d084f8514b5c3f085f53a2e244c2921d3b2545bc20dd4ebe1fc245feec463bb298aecea7a63ed1f7680b877dc6379d8d0cb4"
 }

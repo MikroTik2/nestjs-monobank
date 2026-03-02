@@ -1,3 +1,8 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+.vscode
+.idea
+
 # dependencies
 node_modules
 .pnp
@@ -6,8 +11,9 @@ node_modules
 # testing
 coverage
 
-# next.js
-.next/
+# build outputs
+.nuxt/
+.output/
 out/
 build
 
@@ -19,9 +25,9 @@ build
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-.pnpm-debug.log*
 
 # local env files
+.env
 .env.local
 .env.development.local
 .env.test.local
@@ -30,10 +36,5 @@ yarn-error.log*
 # turbo
 .turbo
 
-.contentlayer
-tsconfig.tsbuildinfo
-
-# ide
-.idea
-.fleet
-.vscode
+# vercel
+.vercel
