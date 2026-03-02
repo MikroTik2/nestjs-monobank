@@ -1,0 +1,33 @@
+{
+	"name": "web",
+	"version": "0.0.1",
+       "private": false,
+	"scripts": {
+		"build": "pnpm prepare:docs && next build",
+		"dev": "next dev",
+		"start": "next start -p 5000",
+		"types:check": "fumadocs-mdx && next typegen && tsc --noEmit",
+		"prepare:docs": "fumadocs-mdx"
+	},
+	"dependencies": {
+		"fumadocs-core": "16.2.4",
+		"fumadocs-mdx": "14.1.0",
+		"fumadocs-ui": "16.2.4",
+		"lucide-react": "^0.556.0",
+		"next": "16.0.8",
+		"react": "^19.2.1",
+		"react-dom": "^19.2.1"
+	},
+	"devDependencies": {
+		"@tailwindcss/postcss": "^4.1.17",
+		"@types/mdx": "^2.0.13",
+		"@types/node": "^24.10.2",
+		"@types/react": "^19.2.7",
+		"@types/react-dom": "^19.2.3",
+		"baseline-browser-mapping": "^2.10.0",
+		"i": "^0.3.7",
+		"postcss": "^8.5.6",
+		"tailwindcss": "^4.1.17",
+		"typescript": "^5.9.3"
+	}
+}
